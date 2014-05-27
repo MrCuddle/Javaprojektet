@@ -108,17 +108,38 @@ public class SQLHelper {
         }
     }
     
-    public static ResultSet ExecuteSQL(String command)
+    public static ResultSet GetResultSetFromQuerry(String command)
     {
         try
         {
-            statement = con.createStatement();
             return statement.executeQuery(command);
         }
         catch(SQLException e)
         {
             System.out.println(e);
             return null;
+        }
+    }
+    
+    public static void ExecuteUpdate(String command)
+    {
+         try 
+        {
+            int i = 2323;
+            statement.executeUpdate(command);
+        } catch (SQLException e) 
+        {
+            System.out.println(e);
+        }
+    }
+    public static void ExecuteQuery(String command)
+    {
+        try 
+        {
+            statement.executeQuery(command);
+        } catch (Exception e) 
+        {
+            System.out.println(e);
         }
     }
     
