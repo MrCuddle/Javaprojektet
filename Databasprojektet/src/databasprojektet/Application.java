@@ -17,6 +17,8 @@
 
 package databasprojektet;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,7 +69,17 @@ public class Application{
             {
                 SQLHelper.Connect();
                 mainWindow.AppendStatusWindow(SQLHelper.GetStatus());
-                
+                try {
+                   ResultSet rs = SQLHelper.ExecuteSQL("Select Content from pun");
+                   while(rs.next())
+                   {
+                        String outputPun = rs.getString("Content");
+                        mainWindow.AppendStatusWindow(outputPun);
+                   } 
+                }
+                   catch (Exception e) {
+                   System.out.println(e);
+                }
             }
         }.start();
     }

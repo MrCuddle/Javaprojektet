@@ -109,6 +109,20 @@ public class SQLHelper {
         }
     }
     
+    public static ResultSet ExecuteSQL(String command)
+    {
+        try
+        {
+            statement = con.createStatement();
+            return statement.executeQuery(command);
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
     public static String GetStatus()
     {
         return status;
@@ -116,7 +130,7 @@ public class SQLHelper {
     
     private static class SQLCMD
     {
-        private static String SelectAll(String table){return "SELECT * FROM" + table;}
+        private static String SelectAll(String table){return "SELECT * FROM " + table;}
         private static String SelectFrom(String values, String table){return "SELECT " + values + " FROM " + table;}
     }
     
