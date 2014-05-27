@@ -48,6 +48,11 @@ public class LoginWindow extends javax.swing.JFrame {
         btnNewUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setBackground(new java.awt.Color(0, 0, 0));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(java.awt.Color.pink);
         setName("frLogin"); // NOI18N
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
