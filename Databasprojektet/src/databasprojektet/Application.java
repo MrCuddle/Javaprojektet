@@ -68,11 +68,11 @@ public class Application{
             {
                 try
                 {
-                 SQLHelper.Connect();
+                    SQLHelper.Connect();
                 } 
                 catch (SQLException e) 
                 {
-                e.printStackTrace();
+                    e.printStackTrace();
                 }
                 
                 mainWindow.AppendStatusWindow(SQLHelper.GetStatus());

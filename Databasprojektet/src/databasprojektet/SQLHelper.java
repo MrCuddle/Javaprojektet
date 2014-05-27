@@ -26,10 +26,11 @@ import java.sql.*;
 public class SQLHelper {
     private static Connection con;
     private static Statement statement;
+    private static String userName = "ab4784", userPass = "gruvfyllo";
     private static final String hostIP = "195.178.232.7", hostPort = "4040";
-    private static final String connectionFormat = "jdbc:mysql://" + hostIP + ":" + hostPort + "/username";
+    private static final String connectionFormat = "jdbc:mysql://" + hostIP + ":" + hostPort + "/" + userName;
     private static String status;
-    private static String userName, userPass;
+    
     
     public static boolean Connect() throws SQLException
     {
@@ -46,14 +47,16 @@ public class SQLHelper {
         }
         
         try 
-            {
-                con = DriverManager.getConnection(connectionFormat,"username","password");
+        {
+                con = DriverManager.getConnection(connectionFormat,userName,userPass);
                 statement = con.createStatement();
-            } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
                 status = "Kunde inte ansluta till databasen " + e;
                 System.out.println(status);
                 return false;
-            } 
+        } 
         status = "Ansluten till databasen";
         return true;
     }
@@ -62,10 +65,13 @@ public class SQLHelper {
     {
         if(con != null)
         {
-            try {
+            try 
+            {
                 con.close();
                 status = "Ej ansluten";
-            } catch (SQLException e) {
+            } 
+            catch (SQLException e) 
+            {
                 return false;
             }
             return true;
@@ -80,7 +86,8 @@ public class SQLHelper {
     {
         if(con != null)
         {
-            try {
+            try 
+            {
                 return !con.isClosed();
             }
             catch (SQLException e) 
