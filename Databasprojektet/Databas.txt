@@ -1,0 +1,2 @@
+Pun: id INTEGER, content STRING, category ENUM, adder USER, date STRING, offensive BOOL.
+User: id INTEGER, name STRING, isAdmin BOOL, easilyOffended BOOL.
