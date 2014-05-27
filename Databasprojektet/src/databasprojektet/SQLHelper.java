@@ -34,6 +34,7 @@ public class SQLHelper {
     
     public static boolean Connect()
     {
+        System.out.println(SQLCMD.SelectFrom("Name, Date", "user"));
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
@@ -112,4 +113,12 @@ public class SQLHelper {
     {
         return status;
     }
+    
+    private static class SQLCMD
+    {
+        private static String SelectAll(String table){return "SELECT * FROM" + table;}
+        private static String SelectFrom(String values, String table){return "SELECT " + values + " FROM " + table;}
+    }
+    
 }
+
