@@ -32,12 +32,11 @@ public class SQLHelper {
     private static String status;
     
     
-    public static boolean Connect() throws SQLException
+    public static boolean Connect()
     {
         try 
         {
             Class.forName("com.mysql.jdbc.Driver");
-            
         } 
         catch (ClassNotFoundException e) 
         {
@@ -57,6 +56,7 @@ public class SQLHelper {
                 System.out.println(status);
                 return false;
         } 
+        
         status = "Ansluten till databasen";
         return true;
     }
@@ -112,7 +112,4 @@ public class SQLHelper {
     {
         return status;
     }
-    
-            
-    
 }

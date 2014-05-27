@@ -56,7 +56,6 @@ public class Application{
         
         mainWindow.setVisible(true);
         
-        
     }
 
     private void ConnectToDatabase()
@@ -66,18 +65,10 @@ public class Application{
             @Override
             public void run()
             {
-                try
-                {
-                    SQLHelper.Connect();
-                } 
-                catch (SQLException e) 
-                {
-                    e.printStackTrace();
-                }
-                
+                SQLHelper.Connect();
                 mainWindow.AppendStatusWindow(SQLHelper.GetStatus());
+                
             }
         }.start();
     }
-    
 }
