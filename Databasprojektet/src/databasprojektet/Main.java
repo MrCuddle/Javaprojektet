@@ -24,6 +24,8 @@ package databasprojektet;
 public class Main {
     Application app;
     
+    //Kommentar
+    
     public static void main(String[] args) {
         Application app = new Application();
         app.Run();
