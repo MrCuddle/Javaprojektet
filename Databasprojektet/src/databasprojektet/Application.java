@@ -77,7 +77,7 @@ public class Application{
                         mainWindow.AppendStatusWindow(outputPun);
                    } 
                 }
-                   catch (Exception e) {
+                   catch (SQLException e) {
                    System.out.println(e);
                 }
             }

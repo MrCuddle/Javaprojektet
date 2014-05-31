@@ -116,6 +116,7 @@ public class SQLHelper {
         }
         catch(SQLException e)
         {
+            status = e.toString();
             System.out.println(e);
             return null;
         }
