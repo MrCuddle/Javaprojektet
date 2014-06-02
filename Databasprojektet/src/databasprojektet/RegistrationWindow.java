@@ -18,6 +18,7 @@
 package databasprojektet;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -129,6 +130,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
             {
                 System.out.println("INSERT INTO users(UserName) VALUES (" + txfName.getText() + ");");
                 SQLHelper.ExecuteUpdate("INSERT INTO users(UserName) VALUES ('" + txfName.getText() + "');");
+                setVisible(false);
             }
             else
             {
@@ -136,7 +138,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
                 System.out.println("Hörrö, användarnamnet äro upptaget");
             }
         }
-        catch (Exception e) 
+        catch (SQLException e) 
         {
             System.out.println(e);
         }

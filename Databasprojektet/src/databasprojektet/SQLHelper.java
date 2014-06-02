@@ -29,8 +29,7 @@ public class SQLHelper {
     private static String userName = "ab4784", userPass = "gruvfyllo";
     private static final String hostIP = "195.178.232.7", hostPort = "4040";
     private static final String connectionFormat = "jdbc:mysql://" + hostIP + ":" + hostPort + "/" + userName;
-    private static String status;
-    
+    private static String sqlHelperPrefix = "SQLHelper: ";
     
     public static boolean Connect()
     {
@@ -40,8 +39,7 @@ public class SQLHelper {
         } 
         catch (ClassNotFoundException e) 
         {
-            status = "Databas-driver hittades ej " + e;
-            System.out.println(status);
+            System.out.println(sqlHelperPrefix+"Databas-driver hittades ej " + e);
             return false;
         }
         
@@ -52,12 +50,10 @@ public class SQLHelper {
         } 
         catch (SQLException e) 
         {
-                status = "Kunde inte ansluta till databasen " + e;
-                System.out.println(status);
+                System.out.println(sqlHelperPrefix+"Kunde inte ansluta till databasen " + e);
                 return false;
         } 
         
-        status = "Ansluten till databasen";
         return true;
     }
     
@@ -68,7 +64,6 @@ public class SQLHelper {
             try 
             {
                 con.close();
-                status = "Ej ansluten";
             } 
             catch (SQLException e) 
             {
@@ -92,20 +87,11 @@ public class SQLHelper {
             }
             catch (SQLException e) 
             {
-                System.out.println(e);
+                System.out.println(sqlHelperPrefix+e);
             }
         }       
         return false;
         
-    }
-    
-    public static void SendSQLQuery(String comman)
-    {
-        if(IsConnected())
-        {
-            ///Do SQL
-            
-        }
     }
     
     public static ResultSet GetResultSetFromQuerry(String command)
@@ -116,8 +102,7 @@ public class SQLHelper {
         }
         catch(SQLException e)
         {
-            status = e.toString();
-            System.out.println(e);
+            System.out.println(sqlHelperPrefix+e);
             return null;
         }
     }
@@ -126,11 +111,11 @@ public class SQLHelper {
     {
          try 
         {
-            int i = 2323;
             statement.executeUpdate(command);
-        } catch (SQLException e) 
+        } 
+        catch (SQLException e) 
         {
-            System.out.println(e);
+            System.out.println(sqlHelperPrefix+e);
         }
     }
     public static void ExecuteQuery(String command)
@@ -138,15 +123,47 @@ public class SQLHelper {
         try 
         {
             statement.executeQuery(command);
-        } catch (Exception e) 
+        } 
+        catch (SQLException e) 
         {
-            System.out.println(e);
+            System.out.println(sqlHelperPrefix+e);
         }
     }
     
     public static String GetStatus()
     {
-        return status;
+        return sqlHelperPrefix+"Connected:"+IsConnected()+" HostIP:"+hostIP+" Port:"+hostPort;
+    }
+    
+    public static void PrintResultSet(ResultSet rs)
+    {
+        if(rs != null)
+        {
+            
+            try 
+            {
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int n = rsmd.getColumnCount();
+                while(rs.next())
+                {
+                    for (int i = 1; i < n; i++) 
+                    {
+                        String out = rs.getString(i);
+                        System.out.println(out);
+                    }
+
+                }
+            }
+            catch (SQLException e) 
+            {
+                System.out.println(e);
+            }
+        }
+        else
+        {
+            System.out.println(sqlHelperPrefix+"ResultSet==NULL");
+        }
+        
     }
     
     private static class SQLCMD

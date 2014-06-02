@@ -17,6 +17,9 @@
 
 package databasprojektet;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Simon Dahlberg and Jesper Sahlin
@@ -137,7 +140,23 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        setVisible(false);
+        
+        String cmd = "SELECT * FROM USER WHERE NAME = '" + txfName.getText() + "'";
+        ResultSet rs = SQLHelper.GetResultSetFromQuerry(cmd);
+
+        try {
+            if(rs.next())
+            {
+                System.out.println("gz! Login success");
+                setVisible(false);
+            }
+            
+        } 
+        catch (SQLException e) 
+        {
+            System.out.println(e);
+        }
+        
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
