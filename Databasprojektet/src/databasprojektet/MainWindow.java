@@ -28,12 +28,14 @@ import javax.swing.JOptionPane;
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    private String userName = "Gäst";
+    private String welcomeMsg = "Välkommen ";
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
+        lblMsg.setText(welcomeMsg + userName + "!");
     }
 
     /**
@@ -51,6 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtStatus = new javax.swing.JEditorPane();
         btnTestSQL = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hej");
@@ -86,6 +89,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        lblMsg.setText("lblMsg");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,7 +103,9 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 439, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnTestSQL)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTestSQL)
+                            .addComponent(lblMsg))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -109,7 +116,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTestSQL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(lblMsg)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)))
@@ -139,7 +148,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        LoginWindow login = new LoginWindow();
+        LoginWindow login = new LoginWindow(this);
         login.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -149,7 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
         {
             return;
         }
-        ResultSet rs = SQLHelper.GetResultSetFromQuerry(res);
+        ResultSet rs = SQLHelper.GetResultSetFromQuery(res);
         if(rs == null)
         {
             SetStatusWindowText("Error executing query '" + res + "'");
@@ -188,6 +197,12 @@ public class MainWindow extends javax.swing.JFrame {
         txtStatus.setText(text);
     }
     
+    public void UpdateUsername(String newUsername)
+    {
+        userName = newUsername;
+        lblMsg.setText(welcomeMsg + userName + "!");
+    }
+
     public void EmptyStatusWindow()
     {
         txtStatus.setText("");
@@ -199,6 +214,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JEditorPane txtStatus;
     // End of variables declaration//GEN-END:variables
 }

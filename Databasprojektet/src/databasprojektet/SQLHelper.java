@@ -94,7 +94,7 @@ public class SQLHelper {
         
     }
     
-    public static ResultSet GetResultSetFromQuerry(String command)
+    public static ResultSet GetResultSetFromQuery(String command)
     {
         try
         {

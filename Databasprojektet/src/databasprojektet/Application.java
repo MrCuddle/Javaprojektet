@@ -32,6 +32,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Application{
     private final String lookAndFeelPath = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
     private MainWindow mainWindow;
+    
+    
     public Application()
     {
         Initialize();
@@ -70,7 +72,7 @@ public class Application{
                 SQLHelper.Connect();
                 mainWindow.AppendStatusWindow(SQLHelper.GetStatus());
                 try {
-                   ResultSet rs = SQLHelper.GetResultSetFromQuerry("Select Content from pun");
+                   ResultSet rs = SQLHelper.GetResultSetFromQuery("Select Content from pun");
                    while(rs.next())
                    {
                         String outputPun = rs.getString("Content");

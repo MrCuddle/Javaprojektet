@@ -118,7 +118,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         boolean isDuplicate = false;
         try 
         {
-            ResultSet rs = SQLHelper.GetResultSetFromQuerry("Select UserName from users");
+            ResultSet rs = SQLHelper.GetResultSetFromQuery("Select UserName from users");
             System.out.println(txfName.getText());
             while(rs.next())
             {

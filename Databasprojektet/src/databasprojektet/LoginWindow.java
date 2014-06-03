@@ -26,10 +26,13 @@ import java.sql.SQLException;
  */
 public class LoginWindow extends javax.swing.JFrame {
 
+    MainWindow parent;
     /**
      * Creates new form LoginWindow
+     * @param parent
      */
-    public LoginWindow() {
+    public LoginWindow(MainWindow parent) {
+        this.parent = parent;
         initComponents();
     }
 
@@ -142,14 +145,21 @@ public class LoginWindow extends javax.swing.JFrame {
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         
         String cmd = "SELECT * FROM USER WHERE NAME = '" + txfName.getText() + "'";
-        ResultSet rs = SQLHelper.GetResultSetFromQuerry(cmd);
+        ResultSet rs = SQLHelper.GetResultSetFromQuery(cmd);
 
         try {
             if(rs.next())
             {
+                String res = rs.getString("name");
                 System.out.println("gz! Login success");
+                parent.UpdateUsername(res);
                 setVisible(false);
             }
+            else
+            {
+                System.out.println("Gick ej att logga in");
+            }
+            
             
         } 
         catch (SQLException e) 
