@@ -58,7 +58,9 @@
                       <Component id="btnOK" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCancel" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="191" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbLoginResult" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -83,6 +85,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnOK" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbLoginResult" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -138,6 +141,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewUserActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbLoginResult">
     </Component>
   </SubComponents>
 </Form>

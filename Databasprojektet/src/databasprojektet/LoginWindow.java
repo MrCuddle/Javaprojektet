@@ -43,7 +43,8 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         btnOK = new javax.swing.JButton();
         txfName = new javax.swing.JTextField();
@@ -52,6 +53,7 @@ public class LoginWindow extends javax.swing.JFrame {
         lblName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         btnNewUser = new javax.swing.JButton();
+        lbLoginResult = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -65,8 +67,10 @@ public class LoginWindow extends javax.swing.JFrame {
 
         btnOK.setText("OK");
         btnOK.setName("btnOK"); // NOI18N
-        btnOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnOK.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnOKActionPerformed(evt);
             }
         });
@@ -77,8 +81,10 @@ public class LoginWindow extends javax.swing.JFrame {
 
         btnCancel.setText("Avbryt");
         btnCancel.setName("btnCancel"); // NOI18N
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelActionPerformed(evt);
             }
         });
@@ -91,8 +97,10 @@ public class LoginWindow extends javax.swing.JFrame {
 
         btnNewUser.setText("Skapa profil");
         btnNewUser.setName("btnNewUser"); // NOI18N
-        btnNewUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNewUser.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNewUserActionPerformed(evt);
             }
         });
@@ -116,7 +124,9 @@ public class LoginWindow extends javax.swing.JFrame {
                         .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 191, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbLoginResult)
+                        .addGap(0, 187, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -135,7 +145,8 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOK)
-                    .addComponent(btnCancel))
+                    .addComponent(btnCancel)
+                    .addComponent(lbLoginResult))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -157,6 +168,7 @@ public class LoginWindow extends javax.swing.JFrame {
             }
             else
             {
+                lbLoginResult.setText("Fel användarnamn eller lösenord");
                 System.out.println("Gick ej att logga in");
             }
             
@@ -183,6 +195,7 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnNewUser;
     private javax.swing.JButton btnOK;
+    private javax.swing.JLabel lbLoginResult;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JTextField txfName;

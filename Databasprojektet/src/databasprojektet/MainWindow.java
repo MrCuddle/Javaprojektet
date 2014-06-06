@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package databasprojektet;
 
 import java.awt.event.KeyEvent;
@@ -27,13 +26,17 @@ import javax.swing.JOptionPane;
  *
  * @author Simon Dahlberg and Jesper Sahlin
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame
+{
+
     private String userName = "Gäst";
     private String welcomeMsg = "Välkommen ";
+
     /**
      * Creates new form MainWindow
      */
-    public MainWindow() {
+    public MainWindow()
+    {
         initComponents();
         lblMsg.setText(welcomeMsg + userName + "!");
     }
@@ -147,56 +150,67 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         LoginWindow login = new LoginWindow(this);
         login.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnTestSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestSQLActionPerformed
         String res = JOptionPane.showInputDialog(null, "Enter SQL Query");
-        if(res == null || res.equals(""))
+        if (res == null || res.equals(""))
         {
             return;
         }
         ResultSet rs = SQLHelper.GetResultSetFromQuery(res);
-        if(rs == null)
+        if (rs == null)
         {
             SetStatusWindowText("Error executing query '" + res + "'");
             AppendStatusWindow(SQLHelper.GetStatus());
             return;
         }
-        
+
         EmptyStatusWindow();
-        
-        try {
+
+        try
+        {
             ResultSetMetaData rsmd = rs.getMetaData();
-            int n = rsmd.getColumnCount();
-                   while(rs.next())
-                   {
-                       for (int i = 1; i < n; i++) {
-                           String out = rs.getString(i);
-                           AppendStatusWindow(out);
-                       }
-                       
-                   } 
+            int n = 0;
+            while (rs.next())
+            {
+                AppendStatusWindow("-----Result" + n++ + "-----");
+                for (int i = 1; i < rsmd.getColumnCount(); i++)
+                {
+                    String out = rs.getString(i);
+                    AppendStatusWindow(rsmd.getColumnName(i) + ": " + out);
                 }
-                   catch (SQLException e) {
-                   System.out.println(e);
-                   AppendStatusWindow(e.toString());
-                }
-        
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            AppendStatusWindow(e.toString());
+        }
+
     }//GEN-LAST:event_btnTestSQLActionPerformed
 
     public void AppendStatusWindow(String text)
     {
-        txtStatus.setText(txtStatus.getText() + "\n" + text);
+        if (!txtStatus.getText().equals(""))
+        {
+            txtStatus.setText(txtStatus.getText() + "\n" + text);
+        }
+        else
+        {
+             txtStatus.setText(text);
+        }
+        
     }
-    
+
     public void SetStatusWindowText(String text)
     {
         txtStatus.setText(text);
     }
-    
+
     public void UpdateUsername(String newUsername)
     {
         userName = newUsername;
