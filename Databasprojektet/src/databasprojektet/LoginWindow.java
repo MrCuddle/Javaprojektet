@@ -19,6 +19,7 @@ package databasprojektet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 /**
  *
@@ -43,17 +44,17 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         btnOK = new javax.swing.JButton();
         txfName = new javax.swing.JTextField();
-        txfPassword = new javax.swing.JTextField();
         btnCancel = new javax.swing.JButton();
         lblName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         btnNewUser = new javax.swing.JButton();
         lbLoginResult = new javax.swing.JLabel();
+        psfPassword = new javax.swing.JPasswordField();
+        lblLoginResults = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -67,24 +68,18 @@ public class LoginWindow extends javax.swing.JFrame {
 
         btnOK.setText("OK");
         btnOK.setName("btnOK"); // NOI18N
-        btnOK.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOKActionPerformed(evt);
             }
         });
 
         txfName.setName("txfName"); // NOI18N
 
-        txfPassword.setName("txfPassword"); // NOI18N
-
         btnCancel.setText("Avbryt");
         btnCancel.setName("btnCancel"); // NOI18N
-        btnCancel.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
@@ -97,13 +92,13 @@ public class LoginWindow extends javax.swing.JFrame {
 
         btnNewUser.setText("Skapa profil");
         btnNewUser.setName("btnNewUser"); // NOI18N
-        btnNewUser.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnNewUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewUserActionPerformed(evt);
             }
         });
+
+        psfPassword.setName("psfPassword"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,19 +108,22 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblName)
-                            .addComponent(lblPassword)
-                            .addComponent(txfName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(txfPassword))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(psfPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(btnNewUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbLoginResult)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbLoginResult))
+                            .addComponent(lblLoginResults))
                         .addGap(0, 187, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -141,13 +139,15 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(psfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOK)
                     .addComponent(btnCancel)
                     .addComponent(lbLoginResult))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(lblLoginResults)
+                .addContainerGap())
         );
 
         pack();
@@ -157,18 +157,28 @@ public class LoginWindow extends javax.swing.JFrame {
         
         String cmd = "SELECT * FROM users WHERE UserName = '" + txfName.getText() + "'";
         ResultSet rs = SQLHelper.GetResultSetFromQuery(cmd);
-
+        lblLoginResults.setText("");
         try {
             if(rs.next())
             {
-                String res = rs.getString("UserName");
-                System.out.println("gz! Login success");
-                parent.UpdateUsername(res);
-                setVisible(false);
+                String passInDatabase = rs.getString("Password");
+                //Då getPassword returnerar en char[] och inte en String så får man göra som nedan istället för att direkt jämföra.
+                String passInField = new String(psfPassword.getPassword());
+                System.out.println(passInDatabase);
+                if(passInDatabase.equals(passInField))
+                {
+                    System.out.println("gz! Login success");
+                    parent.UpdateUsername(txfName.getText());
+                    setVisible(false);
+                }
+                else
+                {
+                   lblLoginResults.setText("Wrong password");
+                }
             }
             else
             {
-                lbLoginResult.setText("Fel användarnamn eller lösenord");
+                lblLoginResults.setText("User name does not exist");
                 System.out.println("Gick ej att logga in");
             }
             
@@ -196,9 +206,10 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnNewUser;
     private javax.swing.JButton btnOK;
     private javax.swing.JLabel lbLoginResult;
+    private javax.swing.JLabel lblLoginResults;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JPasswordField psfPassword;
     private javax.swing.JTextField txfName;
-    private javax.swing.JTextField txfPassword;
     // End of variables declaration//GEN-END:variables
 }

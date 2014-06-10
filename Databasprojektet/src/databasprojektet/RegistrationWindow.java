@@ -93,7 +93,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
                         .addGap(32, 32, 32))
                     .addComponent(txtPass)
                     .addComponent(txtConfirmPass, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

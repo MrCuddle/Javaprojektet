@@ -41,25 +41,30 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="psfPassword" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="txfName" alignment="0" pref="250" max="32767" attributes="0"/>
-                          <Component id="txfPassword" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnNewUser" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="btnOK" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCancel" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbLoginResult" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnOK" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnCancel" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbLoginResult" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblLoginResults" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -80,14 +85,16 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txfPassword" min="-2" max="-2" attributes="0"/>
+              <Component id="psfPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnOK" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbLoginResult" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Component id="lblLoginResults" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,11 +112,6 @@
     <Component class="javax.swing.JTextField" name="txfName">
       <Properties>
         <Property name="name" type="java.lang.String" value="txfName" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txfPassword">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="txfPassword" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancel">
@@ -143,6 +145,13 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbLoginResult">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="psfPassword">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="psfPassword" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLoginResults">
     </Component>
   </SubComponents>
 </Form>
