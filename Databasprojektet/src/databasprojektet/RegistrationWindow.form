@@ -30,7 +30,12 @@
                   <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPass" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblConfirmPass" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnConfirm" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnConfirm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="txtPass" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtConfirmPass" pref="169" max="32767" attributes="0"/>
               </Group>
@@ -54,7 +59,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtConfirmPass" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnConfirm" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -92,6 +100,11 @@
     <Component class="javax.swing.JPasswordField" name="txtPass">
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtConfirmPass">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jlblMessage" noResource="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

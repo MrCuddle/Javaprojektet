@@ -50,6 +50,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         btnConfirm = new javax.swing.JButton();
         txtPass = new javax.swing.JPasswordField();
         txtConfirmPass = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,8 @@ public class RegistrationWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setName("jlblMessage"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,7 +86,11 @@ public class RegistrationWindow extends javax.swing.JFrame {
                     .addComponent(lblName)
                     .addComponent(lblPass)
                     .addComponent(lblConfirmPass)
-                    .addComponent(btnConfirm)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnConfirm)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(32, 32, 32))
                     .addComponent(txtPass)
                     .addComponent(txtConfirmPass, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -104,7 +111,9 @@ public class RegistrationWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnConfirm)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirm)
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -117,6 +126,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         boolean isDuplicate = false;
+        jLabel1.setText("");
         if(Arrays.equals(txtPass.getPassword(), txtConfirmPass.getPassword()))
         {
         try 
@@ -135,11 +145,13 @@ public class RegistrationWindow extends javax.swing.JFrame {
                 System.out.println("INSERT INTO users(UserName, Password) VALUES ('" + txfName.getText() + "', '" + password +  "');");
                 SQLHelper.ExecuteUpdate("INSERT INTO users(UserName, Password) VALUES ('" + txfName.getText() + "', '" + password +  "');");
                 setVisible(false);
+                jLabel1.setText("Account created succesfully");
             }
             else
             {
                 //Ifrågasätt användarens sexuella läggning. (användarnamnet finns redan hehu).
                 System.out.println("Hörrö, användarnamnet äro upptaget");
+                jLabel1.setText("User name already exists");
             }
         }
         catch (SQLException e) 
@@ -150,6 +162,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         else
         {
             System.out.println("Password does not match");
+            jLabel1.setText("Password does not match");
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
@@ -190,6 +203,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPass;
