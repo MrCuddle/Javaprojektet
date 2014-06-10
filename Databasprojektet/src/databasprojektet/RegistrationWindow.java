@@ -19,6 +19,7 @@ package databasprojektet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 /**
  *
@@ -116,6 +117,8 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         boolean isDuplicate = false;
+        if(Arrays.equals(txtPass.getPassword(), txtConfirmPass.getPassword()))
+        {
         try 
         {
             ResultSet rs = SQLHelper.GetResultSetFromQuery("Select UserName from users");
@@ -128,8 +131,9 @@ public class RegistrationWindow extends javax.swing.JFrame {
             }
             if(!isDuplicate)
             {
-                System.out.println("INSERT INTO users(UserName) VALUES (" + txfName.getText() + ");");
-                SQLHelper.ExecuteUpdate("INSERT INTO users(UserName) VALUES ('" + txfName.getText() + "');");
+                String password = new String(txtPass.getPassword());
+                System.out.println("INSERT INTO users(UserName, Password) VALUES ('" + txfName.getText() + "', '" + password +  "');");
+                SQLHelper.ExecuteUpdate("INSERT INTO users(UserName, Password) VALUES ('" + txfName.getText() + "', '" + password +  "');");
                 setVisible(false);
             }
             else
@@ -142,7 +146,11 @@ public class RegistrationWindow extends javax.swing.JFrame {
         {
             System.out.println(e);
         }
-       
+        }
+        else
+        {
+            System.out.println("Password does not match");
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**

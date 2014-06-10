@@ -155,13 +155,13 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         
-        String cmd = "SELECT * FROM USER WHERE NAME = '" + txfName.getText() + "'";
+        String cmd = "SELECT * FROM users WHERE UserName = '" + txfName.getText() + "'";
         ResultSet rs = SQLHelper.GetResultSetFromQuery(cmd);
 
         try {
             if(rs.next())
             {
-                String res = rs.getString("name");
+                String res = rs.getString("UserName");
                 System.out.println("gz! Login success");
                 parent.UpdateUsername(res);
                 setVisible(false);
