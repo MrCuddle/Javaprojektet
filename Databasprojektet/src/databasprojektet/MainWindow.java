@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,9 +29,10 @@ import javax.swing.JOptionPane;
  */
 public class MainWindow extends javax.swing.JFrame
 {
-
+    
     private String userName = "Gäst";
     private String welcomeMsg = "Välkommen ";
+    private User mActiveUser = null;
 
     /**
      * Creates new form MainWindow
@@ -39,7 +41,7 @@ public class MainWindow extends javax.swing.JFrame
     {
         initComponents();
         lblMsg.setText(welcomeMsg + userName + "!");
-        ResultSet categoriesFromDb = SQLHelper.GetResultSetFromQuery("SELECT Name from category");
+
     }
 
     /**
@@ -268,6 +270,16 @@ public class MainWindow extends javax.swing.JFrame
     public void EmptyStatusWindow()
     {
         txtStatus.setText("");
+    }
+    
+    public void RegisterUser(User user)
+    {
+        mActiveUser = user;
+        UpdateUsername(mActiveUser.getName());
+        if (mActiveUser.isAdmin())
+        {
+            System.out.println("Välkommen admin");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
