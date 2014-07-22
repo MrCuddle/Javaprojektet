@@ -214,3 +214,6 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 Databasprojektet/build/classes/databasprojektet/SQLHelper.class
+*.class
+*.class
+*.class

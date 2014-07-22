@@ -53,9 +53,8 @@ public class Application{
     
     public void Run()
     {
-        System.out.println("Started");        
-        
-        ConnectToDatabase();
+        System.out.println("Started");
+        SQLHelper.Connect();
         mainWindow = new MainWindow();
         
         mainWindow.setVisible(true);
