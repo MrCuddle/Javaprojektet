@@ -16,6 +16,8 @@
  */
 package databasprojektet;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -45,6 +47,15 @@ public class MainWindow extends javax.swing.JFrame
         lblMsg.setText(welcomeMsg + userName + "!");
         InitializeCategories();
         InitializePuns();
+        
+        ActionListener categoryCbActionListener = new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                String s = (String) mCategoryComboBox.getSelectedItem();
+                
+            }
+        };
     }
     
     private void InitializeCategories()
@@ -111,7 +122,7 @@ public class MainWindow extends javax.swing.JFrame
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(159, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
 
@@ -147,6 +158,11 @@ public class MainWindow extends javax.swing.JFrame
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        mPunListWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                mPunListWindowValueChanged(evt);
+            }
         });
         jScrollPane3.setViewportView(mPunListWindow);
 
@@ -202,7 +218,7 @@ public class MainWindow extends javax.swing.JFrame
                             .addComponent(jLabelCategory))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblMsg)
                         .addGap(100, 100, 100))))
         );
@@ -212,11 +228,11 @@ public class MainWindow extends javax.swing.JFrame
 
     private void InitializePuns()
     {
-        ResultSet punsFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from pun");
+        ResultSet punsFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from pun order by Title");
         try
         {
             while(punsFromDb.next())
-             mPunList.add(new Pun(punsFromDb.getString("Content"), punsFromDb.getString("Title")));
+             mPunList.add(new Pun(punsFromDb.getString("Content"), punsFromDb.getString("Title"), punsFromDb.getString("Category")));
         }
         catch(SQLException e)
         {
@@ -277,6 +293,11 @@ public class MainWindow extends javax.swing.JFrame
             AppendStatusWindow(e.toString());
         }
     }//GEN-LAST:event_btnTestSQLActionPerformed
+
+    //Ändrar content utefter vilken titel som är vald i jList
+    private void mPunListWindowValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mPunListWindowValueChanged
+       mPunContentWindow.setText(mPunList.get(mPunListWindow.getSelectedIndex()).GetContent());
+    }//GEN-LAST:event_mPunListWindowValueChanged
 
     public void AppendStatusWindow(String text)
     {
