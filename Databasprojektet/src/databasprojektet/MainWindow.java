@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2014 Simon Dahlberg and Jesper Sahlin
  *
  * This program is free software: you can redistribute it and/or modify
@@ -48,6 +48,7 @@ public class MainWindow extends javax.swing.JFrame
         lblMsg.setText(welcomeMsg + userName + "!");
         InitializeCategories();
         InitializePuns();
+        InitializeSlider();
         
         ActionListener categoryCbActionListener = new ActionListener()
         {
@@ -105,6 +106,8 @@ public class MainWindow extends javax.swing.JFrame
         lblMsg = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         mPunListWindow = new javax.swing.JList();
+        mRateSlider = new javax.swing.JSlider();
+        mRateItButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hej");
@@ -131,7 +134,7 @@ public class MainWindow extends javax.swing.JFrame
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
 
@@ -175,58 +178,84 @@ public class MainWindow extends javax.swing.JFrame
         });
         jScrollPane3.setViewportView(mPunListWindow);
 
+        mRateItButton.setText("Rate It");
+        mRateItButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mRateItButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(509, 509, 509)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(203, 203, 203))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCategory)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMsg))
-                        .addGap(372, 372, 372)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelCategory)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblMsg)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(mRateItButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(97, 97, 97)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTestSQL))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btnTestSQL)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mRateItButton)
+                                    .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTestSQL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addContainerGap())
+                        .addGap(199, 199, 199))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelCategory))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblMsg)
                         .addGap(100, 100, 100))))
@@ -243,6 +272,7 @@ public class MainWindow extends javax.swing.JFrame
             while(punsFromDb.next())
              mPunList.add(new Pun(punsFromDb.getInt("ID"), punsFromDb.getString("Title"), punsFromDb.getString("Content")
                      , punsFromDb.getString("Category"), punsFromDb.getInt("Adder"), punsFromDb.getDate("Date")));
+
         }
         catch(SQLException e)
         {
@@ -261,6 +291,16 @@ public class MainWindow extends javax.swing.JFrame
             listModel.addElement(mPunList.get(i).GetTitle());
         }
         mPunListWindow.setModel(listModel);
+    }
+    
+    private void InitializeSlider()
+    {
+        mRateSlider.setMinimum(1);
+        mRateSlider.setMaximum(5);
+        mRateSlider.setValue(3);
+        mRateSlider.setMinorTickSpacing(1);
+        mRateSlider.setPaintTicks(true);
+        mRateSlider.setPaintLabels(true);
     }
     private void ChangeCategoryShown(String category)
     {
@@ -337,6 +377,29 @@ public class MainWindow extends javax.swing.JFrame
        }
     }//GEN-LAST:event_mPunListWindowValueChanged
 
+    private void mRateItButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRateItButtonActionPerformed
+        ResultSet rs = SQLHelper.GetResultSetFromQuery("SELECT * FROM rating WHERE UserID = '" + mActiveUser.GetId()+ "' AND PunID = '" 
+                + mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "'");
+        try
+        {
+            if(rs.next())
+            {
+                SQLHelper.ExecuteUpdate("UPDATE rating SET Rating = '" + mRateSlider.getValue() + 
+                        "' WHERE UserID = '" + mActiveUser.GetId() + "' AND PunID = '" + 
+                        mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "'") ;
+            }
+            else
+            {
+                SQLHelper.ExecuteUpdate("INSERT INTO rating VALUES ('" + mActiveUser.GetId() + 
+                 "', '" + mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "', '" + mRateSlider.getValue() +"')");
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_mRateItButtonActionPerformed
+
     public void AppendStatusWindow(String text)
     {
         if (!txtStatus.getText().equals(""))
@@ -396,6 +459,8 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JComboBox mCategoryComboBox;
     private javax.swing.JTextArea mPunContentWindow;
     private javax.swing.JList mPunListWindow;
+    private javax.swing.JButton mRateItButton;
+    private javax.swing.JSlider mRateSlider;
     private javax.swing.JEditorPane txtStatus;
     // End of variables declaration//GEN-END:variables
 }

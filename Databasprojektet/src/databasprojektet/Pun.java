@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2014 Simpa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,11 +42,12 @@ public class Pun {
         mDateAdded = dateAdded;
     }
     
-    public Pun(String content, String title, String category)
+    public Pun(String content, String title, String category, int id)
     {
         mContent = content;
         mTitle = title;
         mCategory = category;
+        mId = id;
     }
     
     public Pun(String content, String adder, Date dateAdded, int numOfOffenders)
@@ -115,6 +116,11 @@ public class Pun {
     public String GetCategory()
     {
         return mCategory;
+    }
+    
+    public int GetID()
+    {
+        return mId;
     }
     //Bör skickas till databasen också/istället
     public void ThisIsOffensive()
