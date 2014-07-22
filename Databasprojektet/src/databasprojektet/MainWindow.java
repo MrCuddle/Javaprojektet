@@ -21,11 +21,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.List;
 import javax.swing.DefaultListModel;
-=======
->>>>>>> origin/master
 import javax.swing.JOptionPane;
 
 /**
@@ -37,12 +34,8 @@ public class MainWindow extends javax.swing.JFrame
     
     private String userName = "Gäst";
     private String welcomeMsg = "Välkommen ";
-<<<<<<< HEAD
     ArrayList<Pun> mPunList = new ArrayList<Pun>();
-=======
     private User mActiveUser = null;
->>>>>>> origin/master
-
     /**
      * Creates new form MainWindow
      */
@@ -50,7 +43,6 @@ public class MainWindow extends javax.swing.JFrame
     {
         initComponents();
         lblMsg.setText(welcomeMsg + userName + "!");
-<<<<<<< HEAD
         InitializeCategories();
         InitializePuns();
     }
@@ -70,9 +62,6 @@ public class MainWindow extends javax.swing.JFrame
         {
             System.out.println(e);
         }
-=======
-
->>>>>>> origin/master
     }
     /**
      * This method is called from within the constructor to initialize the form.
