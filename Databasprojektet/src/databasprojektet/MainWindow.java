@@ -241,7 +241,8 @@ public class MainWindow extends javax.swing.JFrame
         try
         {
             while(punsFromDb.next())
-             mPunList.add(new Pun(punsFromDb.getString("Content"), punsFromDb.getString("Title"), punsFromDb.getString("Category")));
+             mPunList.add(new Pun(punsFromDb.getInt("ID"), punsFromDb.getString("Title"), punsFromDb.getString("Content")
+                     , punsFromDb.getString("Category"), punsFromDb.getInt("Adder"), punsFromDb.getDate("Date")));
         }
         catch(SQLException e)
         {
@@ -372,9 +373,14 @@ public class MainWindow extends javax.swing.JFrame
         if (mActiveUser.IsAdmin())
         {
             System.out.println("Välkommen admin");
-            AdminWindow a = new AdminWindow();
+            AdminWindow a = new AdminWindow(this);
             a.setVisible(true);
         }
+    }
+    
+    public ArrayList<Pun> GetPunList()
+    {
+        return mPunList;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

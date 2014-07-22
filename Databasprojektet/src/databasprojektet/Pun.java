@@ -18,6 +18,10 @@
 package databasprojektet;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +30,7 @@ import java.sql.Date;
 public class Pun {
     
     private String mContent, mAdder, mTitle, mCategory;
-    private int mNumOfOffenders, mIndex;
+    private int mNumOfOffenders, mId, mAdderId;
     private final float mOffensiveThreshold = 0.2f;
     private Date mDateAdded;
     
@@ -53,6 +57,16 @@ public class Pun {
         mNumOfOffenders = numOfOffenders;
     }
     
+    public Pun(int id, String title, String content, String category, int adder, Date dateAdded)
+    {
+        mId = id;
+        mTitle = title;
+        mContent = content;
+        mCategory = category;
+        mAdderId = adder;
+        mDateAdded = dateAdded;
+    }
+    
     public String GetContent()
     {
         return mContent;
@@ -60,7 +74,32 @@ public class Pun {
     
     public String GetAdder()
     {
-        return mAdder;
+        String res = null;
+        String query = "SELECT * FROM users WHERE id = " + mAdderId + ";";
+        ResultSet rs = SQLHelper.GetResultSetFromQuery(query);
+        try
+        {
+            if(rs.next())
+            {
+                res = rs.getString("UserName");
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(AdminWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return res;
+    }
+    
+    public int GetId()
+    {
+        return mId;
+    }
+    
+    public int GetAdderId()
+    {
+        return mAdderId;
     }
     
     public Date GetDate()
