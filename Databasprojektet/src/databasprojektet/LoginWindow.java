@@ -171,9 +171,10 @@ public class LoginWindow extends javax.swing.JFrame
                 System.out.println(passInDatabase);
                 if (passInDatabase.equals(passInField))
                 {
+                    int id = rs.getInt("ID");
                     String name = rs.getString("UserName");
                     boolean admin = rs.getBoolean("IsAdmin");
-                    User u = new User(name, passInDatabase, admin);
+                    User u = new User(id, name, passInDatabase, admin);
                     parent.RegisterUser(u);
 
                     System.out.println("gz! Login success");

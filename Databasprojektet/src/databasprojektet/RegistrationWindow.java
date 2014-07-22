@@ -75,7 +75,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
         lblConfirmPass.setText("Bekräfta lösenord");
 
-        btnConfirm.setText("Confirm");
+        btnConfirm.setText("OK");
         btnConfirm.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -108,7 +108,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
                         .addGap(32, 32, 32))
                     .addComponent(txtPass)
                     .addComponent(txtConfirmPass))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

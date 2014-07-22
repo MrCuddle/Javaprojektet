@@ -23,21 +23,31 @@ package databasprojektet;
 class User
 {
 
+    private int mId;
     private String mName;
     private String mPassword;
     private boolean mAdmin = false;
 
-    public User(String name, String password, boolean admin)
+    public User(int id, String name, String password, boolean admin)
     {
+        mId = id;
         mName = name;
         mPassword = password;
         mAdmin = admin;
     }
 
     /**
+     * @return the Id
+     */
+    public int GetId()
+    {
+        return mId;
+    }
+    
+    /**
      * @return the Name
      */
-    public String getName()
+    public String GetName()
     {
         return mName;
     }
@@ -45,7 +55,7 @@ class User
     /**
      * @return the Password
      */
-    public String getPassword()
+    public String GetPassword()
     {
         return mPassword;
     }
@@ -53,9 +63,15 @@ class User
     /**
      * @return the Admin
      */
-    public boolean isAdmin()
+    public boolean IsAdmin()
     {
         return mAdmin;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return GetName() + " " + GetPassword() + " " + IsAdmin();
     }
 
 }
