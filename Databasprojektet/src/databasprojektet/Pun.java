@@ -26,7 +26,7 @@ import java.sql.Date;
 public class Pun {
     
     private String mContent, mAdder, mTitle, mCategory;
-    private int mNumOfOffenders, mIndex;
+    private int mNumOfOffenders, mId;
     private final float mOffensiveThreshold = 0.2f;
     private Date mDateAdded;
     
@@ -38,11 +38,12 @@ public class Pun {
         mDateAdded = dateAdded;
     }
     
-    public Pun(String content, String title, String category)
+    public Pun(String content, String title, String category, int id)
     {
         mContent = content;
         mTitle = title;
         mCategory = category;
+        mId = id;
     }
     
     public Pun(String content, String adder, Date dateAdded, int numOfOffenders)
@@ -76,6 +77,11 @@ public class Pun {
     public String GetCategory()
     {
         return mCategory;
+    }
+    
+    public int GetID()
+    {
+        return mId;
     }
     //Bör skickas till databasen också/istället
     public void ThisIsOffensive()
