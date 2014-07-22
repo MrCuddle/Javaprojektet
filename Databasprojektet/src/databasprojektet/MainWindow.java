@@ -20,6 +20,9 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +34,7 @@ public class MainWindow extends javax.swing.JFrame
 
     private String userName = "Gäst";
     private String welcomeMsg = "Välkommen ";
+    ArrayList<Pun> mPunList = new ArrayList<Pun>();
 
     /**
      * Creates new form MainWindow
@@ -39,9 +43,26 @@ public class MainWindow extends javax.swing.JFrame
     {
         initComponents();
         lblMsg.setText(welcomeMsg + userName + "!");
-        ResultSet categoriesFromDb = SQLHelper.GetResultSetFromQuery("SELECT Name from category");
+        InitializeCategories();
+        InitializePuns();
     }
-
+    
+    private void InitializeCategories()
+    {
+        mCategoryComboBox.addItem("Visa alla");
+        ResultSet categoriesFromDb = SQLHelper.GetResultSetFromQuery("SELECT Name from category");
+        try
+        {
+        while(categoriesFromDb.next())
+            {
+                mCategoryComboBox.addItem(categoriesFromDb.getString("Name"));
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +84,7 @@ public class MainWindow extends javax.swing.JFrame
         mPunContentWindow = new javax.swing.JTextArea();
         lblMsg = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        mPunListWindow = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hej");
@@ -114,8 +135,6 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
-        mCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabelCategory.setText("Kategori");
 
         mPunContentWindow.setColumns(20);
@@ -124,12 +143,12 @@ public class MainWindow extends javax.swing.JFrame
 
         lblMsg.setText("lblMsg");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        mPunListWindow.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(mPunListWindow);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,6 +210,25 @@ public class MainWindow extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void InitializePuns()
+    {
+        ResultSet punsFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from pun");
+        try
+        {
+            while(punsFromDb.next())
+             mPunList.add(new Pun(punsFromDb.getString("Content"), punsFromDb.getString("Title")));
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for(int i = 0; i < mPunList.size(); i++)
+        {
+            listModel.addElement(mPunList.get(i).GetTitle());
+        }
+        mPunListWindow.setModel(listModel);
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         System.exit(0);
@@ -238,7 +276,6 @@ public class MainWindow extends javax.swing.JFrame
             System.out.println(e);
             AppendStatusWindow(e.toString());
         }
-
     }//GEN-LAST:event_btnTestSQLActionPerformed
 
     public void AppendStatusWindow(String text)
@@ -275,7 +312,6 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabelCategory;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -283,6 +319,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JLabel lblMsg;
     private javax.swing.JComboBox mCategoryComboBox;
     private javax.swing.JTextArea mPunContentWindow;
+    private javax.swing.JList mPunListWindow;
     private javax.swing.JEditorPane txtStatus;
     // End of variables declaration//GEN-END:variables
 }

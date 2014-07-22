@@ -25,11 +25,10 @@ import java.sql.Date;
  */
 public class Pun {
     
-    private String mContent;
-    private int mNumOfOffenders;
+    private String mContent, mAdder, mTitle;
+    private int mNumOfOffenders, mIndex;
     private final float mOffensiveThreshold = 0.2f;
     private Date mDateAdded;
-    private String mAdder;
     
     //För ny pun
     public Pun(String content, String adder, Date dateAdded)
@@ -39,8 +38,13 @@ public class Pun {
         mDateAdded = dateAdded;
     }
     
-        public Pun(String content, String adder, Date dateAdded,
-                int numOfOffenders)
+    public Pun(String content, String title)
+    {
+        mContent = content;
+        mTitle = title;
+    }
+    
+    public Pun(String content, String adder, Date dateAdded, int numOfOffenders)
     {
         mContent = content;
         mAdder = adder;
@@ -61,6 +65,11 @@ public class Pun {
     public Date GetDate()
     {
         return mDateAdded;
+    }
+    
+    public String GetTitle()
+    {
+        return mTitle;
     }
     
     //Bör skickas till databasen också/istället
