@@ -29,9 +29,14 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form Register
+     * @param isAdmin
      */
-    public RegistrationWindow() {
+    public RegistrationWindow(boolean isAdmin) {
         initComponents();
+        if(!isAdmin)
+        {
+            chkAdmin.setVisible(false);
+        }
     }
 
     /**
@@ -52,6 +57,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         txtConfirmPass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        chkAdmin = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +86,8 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
         jLabel1.setName("jlblMessage"); // NOI18N
 
+        chkAdmin.setText("Administratör");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,12 +101,14 @@ public class RegistrationWindow extends javax.swing.JFrame {
                     .addComponent(lblConfirmPass)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnConfirm)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkAdmin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(32, 32, 32))
                     .addComponent(txtPass)
-                    .addComponent(txtConfirmPass, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(txtConfirmPass))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +126,10 @@ public class RegistrationWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtConfirmPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConfirm)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnConfirm)
+                        .addComponent(chkAdmin))
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -146,9 +158,9 @@ public class RegistrationWindow extends javax.swing.JFrame {
             }
             if(!isDuplicate)
             {
+                int isAdmin = chkAdmin.isSelected() ? 1 : 0;
                 String password = new String(txtPass.getPassword());
-                System.out.println("INSERT INTO users(UserName, Password) VALUES ('" + txfName.getText() + "', '" + password +  "');");
-                SQLHelper.ExecuteUpdate("INSERT INTO users(UserName, Password) VALUES ('" + txfName.getText() + "', '" + password +  "');");
+                SQLHelper.ExecuteUpdate("INSERT INTO users(UserName, Password, IsAdmin) VALUES ('" + txfName.getText() + "', '" + password +  "', '" + isAdmin + "');");
                 setVisible(false);
                 jLabel1.setText("Account created succesfully");
             }
@@ -201,13 +213,14 @@ public class RegistrationWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrationWindow().setVisible(true);
+                new RegistrationWindow(false).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
+    private javax.swing.JCheckBox chkAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblConfirmPass;
     private javax.swing.JLabel lblName;

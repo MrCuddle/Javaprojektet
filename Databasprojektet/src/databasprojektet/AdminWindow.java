@@ -17,6 +17,9 @@
 
 package databasprojektet;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 /**
  *
  * @author Simon Dahlberg and Jesper Sahlin
@@ -30,6 +33,23 @@ public class AdminWindow extends javax.swing.JFrame
     public AdminWindow()
     {
         initComponents();
+        jTabbedPane.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e)
+            {
+                if(e.equals(pnlPun))
+                {
+                    System.out.println("Pun");
+                }
+                else if(e.equals(pnlUser))
+                {
+                    System.out.println("User");
+                }
+                
+                
+            }
+    });
     }
 
     /**
@@ -42,21 +62,79 @@ public class AdminWindow extends javax.swing.JFrame
     private void initComponents()
     {
 
+        btnNewUser = new javax.swing.JButton();
+        jTabbedPane = new javax.swing.JTabbedPane();
+        pnlUser = new javax.swing.JPanel();
+        pnlPun = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administratör");
+
+        btnNewUser.setText("Ny Användare");
+        btnNewUser.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnNewUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlUserLayout = new javax.swing.GroupLayout(pnlUser);
+        pnlUser.setLayout(pnlUserLayout);
+        pnlUserLayout.setHorizontalGroup(
+            pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 473, Short.MAX_VALUE)
+        );
+        pnlUserLayout.setVerticalGroup(
+            pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jTabbedPane.addTab("Användare", pnlUser);
+
+        javax.swing.GroupLayout pnlPunLayout = new javax.swing.GroupLayout(pnlPun);
+        pnlPun.setLayout(pnlPunLayout);
+        pnlPunLayout.setHorizontalGroup(
+            pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 473, Short.MAX_VALUE)
+        );
+        pnlPunLayout.setVerticalGroup(
+            pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jTabbedPane.addTab("Skämt", pnlPun);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNewUser))
+                    .addComponent(jTabbedPane))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNewUser)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNewUserActionPerformed
+    {//GEN-HEADEREND:event_btnNewUserActionPerformed
+        RegistrationWindow r = new RegistrationWindow(true);
+        r.setVisible(true);
+    }//GEN-LAST:event_btnNewUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,5 +186,9 @@ public class AdminWindow extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNewUser;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JPanel pnlPun;
+    private javax.swing.JPanel pnlUser;
     // End of variables declaration//GEN-END:variables
 }

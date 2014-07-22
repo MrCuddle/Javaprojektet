@@ -279,6 +279,8 @@ public class MainWindow extends javax.swing.JFrame
         if (mActiveUser.isAdmin())
         {
             System.out.println("Välkommen admin");
+            AdminWindow a = new AdminWindow();
+            a.setVisible(true);
         }
     }
 

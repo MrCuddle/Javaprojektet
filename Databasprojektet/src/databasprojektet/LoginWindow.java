@@ -199,8 +199,8 @@ public class LoginWindow extends javax.swing.JFrame
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
-        RegistrationWindow registration = new RegistrationWindow();
-        registration.show();
+        RegistrationWindow registration = new RegistrationWindow(false);
+        registration.setVisible(true);
     }//GEN-LAST:event_btnNewUserActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
