@@ -310,8 +310,8 @@ public class MainWindow extends javax.swing.JFrame
     public void RegisterUser(User user)
     {
         mActiveUser = user;
-        UpdateUsername(mActiveUser.getName());
-        if (mActiveUser.isAdmin())
+        UpdateUsername(mActiveUser.GetName());
+        if (mActiveUser.IsAdmin())
         {
             System.out.println("Välkommen admin");
             AdminWindow a = new AdminWindow();

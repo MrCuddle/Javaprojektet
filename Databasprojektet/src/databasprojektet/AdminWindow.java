@@ -14,9 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package databasprojektet;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowStateListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -27,29 +35,56 @@ import javax.swing.event.ChangeListener;
 public class AdminWindow extends javax.swing.JFrame
 {
 
+    private ArrayList<User> mUserList;
+
     /**
      * Creates new form AdminPanel
      */
     public AdminWindow()
     {
         initComponents();
-        jTabbedPane.addChangeListener(new ChangeListener() {
+        InitializeUsers();
+        addWindowFocusListener(new WindowFocusListener()
+        {
 
             @Override
-            public void stateChanged(ChangeEvent e)
+            public void windowGainedFocus(WindowEvent e)
             {
-                if(e.equals(pnlPun))
-                {
-                    System.out.println("Pun");
-                }
-                else if(e.equals(pnlUser))
-                {
-                    System.out.println("User");
-                }
-                
-                
+                InitializeUsers();
             }
-    });
+
+            @Override
+            public void windowLostFocus(WindowEvent e)
+            {
+                //Do nothing
+            }
+        });
+
+
+    }
+
+    private void InitializeUsers()
+    {
+        ResultSet usersFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from users order by UserName");
+        mUserList = new ArrayList<User>();
+        try
+        {
+            while (usersFromDb.next())
+            {
+                mUserList.add(new User(usersFromDb.getInt("ID"), usersFromDb.getString("UserName"), usersFromDb.getString("Password"), usersFromDb.getBoolean("IsAdmin")));
+            }
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+        }
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (int i = 0; i < mUserList.size(); i++)
+        {
+            listModel.addElement(mUserList.get(i).GetName());
+        }
+        jListUsers.setModel(listModel);
     }
 
     /**
@@ -62,12 +97,17 @@ public class AdminWindow extends javax.swing.JFrame
     private void initComponents()
     {
 
-        btnNewUser = new javax.swing.JButton();
         jTabbedPane = new javax.swing.JTabbedPane();
         pnlUser = new javax.swing.JPanel();
+        btnNewUser = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListUsers = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtUserInfo = new javax.swing.JTextArea();
+        btnRemoveUser = new javax.swing.JButton();
         pnlPun = new javax.swing.JPanel();
+        btnNewPun = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administratör");
 
         btnNewUser.setText("Ny Användare");
@@ -79,28 +119,74 @@ public class AdminWindow extends javax.swing.JFrame
             }
         });
 
+        jScrollPane1.setViewportView(jListUsers);
+
+        txtUserInfo.setColumns(20);
+        txtUserInfo.setRows(5);
+        jScrollPane2.setViewportView(txtUserInfo);
+
+        btnRemoveUser.setText("Ta bort användare");
+        btnRemoveUser.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnRemoveUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlUserLayout = new javax.swing.GroupLayout(pnlUser);
         pnlUser.setLayout(pnlUserLayout);
         pnlUserLayout.setHorizontalGroup(
-            pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(pnlUserLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRemoveUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNewUser))
+            .addGroup(pnlUserLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         pnlUserLayout.setVerticalGroup(
             pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNewUser)
+                    .addComponent(btnRemoveUser)))
         );
 
         jTabbedPane.addTab("Användare", pnlUser);
+
+        btnNewPun.setText("Nytt Skämt");
+        btnNewPun.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnNewPunActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlPunLayout = new javax.swing.GroupLayout(pnlPun);
         pnlPun.setLayout(pnlPunLayout);
         pnlPunLayout.setHorizontalGroup(
             pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPunLayout.createSequentialGroup()
+                .addGap(0, 380, Short.MAX_VALUE)
+                .addComponent(btnNewPun, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlPunLayout.setVerticalGroup(
             pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPunLayout.createSequentialGroup()
+                .addGap(0, 317, Short.MAX_VALUE)
+                .addComponent(btnNewPun))
         );
 
         jTabbedPane.addTab("Skämt", pnlPun);
@@ -109,32 +195,55 @@ public class AdminWindow extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNewUser))
-                    .addComponent(jTabbedPane))
-                .addContainerGap())
+            .addComponent(jTabbedPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNewUser)
-                .addContainerGap())
+                .addComponent(jTabbedPane))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNewPunActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNewPunActionPerformed
+    {//GEN-HEADEREND:event_btnNewPunActionPerformed
+        
+    }//GEN-LAST:event_btnNewPunActionPerformed
 
     private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNewUserActionPerformed
     {//GEN-HEADEREND:event_btnNewUserActionPerformed
         RegistrationWindow r = new RegistrationWindow(true);
         r.setVisible(true);
     }//GEN-LAST:event_btnNewUserActionPerformed
+
+    private void btnRemoveUserActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveUserActionPerformed
+    {//GEN-HEADEREND:event_btnRemoveUserActionPerformed
+        String s = jListUsers.getSelectedValue().toString();
+        
+        boolean deleted = false;
+        for (int i = 0; i < mUserList.size(); i++)
+        {
+            if (mUserList.get(i).GetName().equals(s))
+            {
+                int id = mUserList.get(i).GetId();
+                mUserList.remove(i);
+                String removeQuery = "DELETE FROM Users WHERE ID = '" + id + "';";
+                SQLHelper.ExecuteUpdate(removeQuery);
+                deleted = true;
+                break;
+            }
+        }
+        
+        if(!deleted)
+        {
+            System.out.println("User not found and could not be deleted");
+        }
+        
+        InitializeUsers();
+
+    }//GEN-LAST:event_btnRemoveUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,9 +295,16 @@ public class AdminWindow extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNewPun;
     private javax.swing.JButton btnNewUser;
+    private javax.swing.JButton btnRemoveUser;
+    private javax.swing.JList jListUsers;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JPanel pnlPun;
     private javax.swing.JPanel pnlUser;
+    private javax.swing.JTextArea txtUserInfo;
     // End of variables declaration//GEN-END:variables
+
 }
