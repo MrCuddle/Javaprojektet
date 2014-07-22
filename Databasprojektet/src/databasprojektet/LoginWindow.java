@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package databasprojektet;
 
 import java.sql.ResultSet;
@@ -25,14 +24,18 @@ import java.util.Arrays;
  *
  * @author Simon Dahlberg and Jesper Sahlin
  */
-public class LoginWindow extends javax.swing.JFrame {
+public class LoginWindow extends javax.swing.JFrame
+{
 
     MainWindow parent;
+
     /**
      * Creates new form LoginWindow
+     *
      * @param parent
      */
-    public LoginWindow(MainWindow parent) {
+    public LoginWindow(MainWindow parent)
+    {
         this.parent = parent;
         initComponents();
     }
@@ -154,26 +157,31 @@ public class LoginWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        
+
         String cmd = "SELECT * FROM users WHERE UserName = '" + txfName.getText() + "'";
         ResultSet rs = SQLHelper.GetResultSetFromQuery(cmd);
         lblLoginResults.setText("");
-        try {
-            if(rs.next())
+        try
+        {
+            if (rs.next())
             {
                 String passInDatabase = rs.getString("Password");
                 //Då getPassword returnerar en char[] och inte en String så får man göra som nedan istället för att direkt jämföra.
                 String passInField = new String(psfPassword.getPassword());
                 System.out.println(passInDatabase);
-                if(passInDatabase.equals(passInField))
+                if (passInDatabase.equals(passInField))
                 {
+                    String name = rs.getString("UserName");
+                    boolean admin = rs.getBoolean("IsAdmin");
+                    User u = new User(name, passInDatabase, admin);
+                    parent.RegisterUser(u);
+
                     System.out.println("gz! Login success");
-                    parent.UpdateUsername(txfName.getText());
                     setVisible(false);
                 }
                 else
                 {
-                   lblLoginResults.setText("Wrong password");
+                    lblLoginResults.setText("Wrong password");
                 }
             }
             else
@@ -181,14 +189,13 @@ public class LoginWindow extends javax.swing.JFrame {
                 lblLoginResults.setText("User name does not exist");
                 System.out.println("Gick ej att logga in");
             }
-            
-            
-        } 
-        catch (SQLException e) 
+
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
-        
+
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
@@ -212,4 +219,5 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField psfPassword;
     private javax.swing.JTextField txfName;
     // End of variables declaration//GEN-END:variables
+
 }

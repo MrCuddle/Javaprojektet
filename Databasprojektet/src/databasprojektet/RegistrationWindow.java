@@ -41,7 +41,8 @@ public class RegistrationWindow extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         txfName = new javax.swing.JTextField();
         lblName = new javax.swing.JLabel();
@@ -54,21 +55,25 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txfName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txfName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txfNameActionPerformed(evt);
             }
         });
 
-        lblName.setText("Name");
+        lblName.setText("Namn");
 
-        lblPass.setText("Password");
+        lblPass.setText("Lösenord");
 
-        lblConfirmPass.setText("Confirm password");
+        lblConfirmPass.setText("Bekräfta lösenord");
 
         btnConfirm.setText("Confirm");
-        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnConfirm.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnConfirmActionPerformed(evt);
             }
         });
