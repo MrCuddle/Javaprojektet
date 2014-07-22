@@ -17,6 +17,9 @@
 package databasprojektet;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,10 +30,60 @@ public class SQLHelper
 
     private static Connection con;
     private static Statement statement;
-    private static String userName = "ab4784", userPass = "gruvfyllo";
+    private static final String userName = "ab4784", userPass = "gruvfyllo";
     private static final String hostIP = "195.178.232.7", hostPort = "4040";
     private static final String connectionFormat = "jdbc:mysql://" + hostIP + ":" + hostPort + "/" + userName;
-    private static String sqlHelperPrefix = "SQLHelper: ";
+    private static final String sqlHelperPrefix = "SQLHelper: ";
+
+    public static String GetHostURL()
+    {
+        try
+        {
+            return con.getMetaData().getURL();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static String GetHostIP()
+    {
+        return hostIP;
+    }
+
+    public static String GetHostName()
+    {
+        try
+        {
+            return con.getMetaData().getUserName();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public static ArrayList<String> GetTableNames()
+    {
+        ArrayList<String> res = new ArrayList<>();
+        try
+        {
+            ResultSet rs = con.getMetaData().getTables(null, null, "%", null);
+            while (rs.next())
+            {                
+                res.add(rs.getString(3));
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return res;
+    }
 
     public static boolean Connect()
     {
@@ -171,25 +224,6 @@ public class SQLHelper
             System.out.println(sqlHelperPrefix + "ResultSet==NULL");
         }
 
-    }
-
-    private static class SQLCMD
-    {
-
-        private static String SelectAll(String table)
-        {
-            return "SELECT * FROM " + table;
-        }
-
-        private static String SelectFrom(String values, String table)
-        {
-            return "SELECT " + values + " FROM " + table;
-        }
-
-        private static String SelectWhere(String table, String column, String key)
-        {
-            return "SELECT * FROM " + table + " WHERE " + column + "=" + key;
-        }
     }
 
 }

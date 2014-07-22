@@ -19,11 +19,9 @@ package databasprojektet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,7 +31,7 @@ public class MainWindow extends javax.swing.JFrame
 {
     
     private String userName = "Gäst";
-    private String welcomeMsg = "Välkommen ";
+    private final String welcomeMsg = "Välkommen ";
     ArrayList<Pun> mPunList = new ArrayList<Pun>();
     ArrayList<Pun> mPunListShown = new ArrayList<Pun>();
     private User mActiveUser = null;
@@ -47,7 +45,7 @@ public class MainWindow extends javax.swing.JFrame
         InitializeCategories();
         InitializePuns();
         InitializeSlider();
-        
+        this.setLocationRelativeTo(null);
         ActionListener categoryCbActionListener = new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -92,9 +90,6 @@ public class MainWindow extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtStatus = new javax.swing.JEditorPane();
-        btnTestSQL = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         mCategoryComboBox = new javax.swing.JComboBox();
         jLabelCategory = new javax.swing.JLabel();
@@ -113,20 +108,6 @@ public class MainWindow extends javax.swing.JFrame
         setName("MainWindow"); // NOI18N
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
-
-        txtStatus.setEditable(false);
-        txtStatus.setName("txtStatus"); // NOI18N
-        jScrollPane1.setViewportView(txtStatus);
-        txtStatus.getAccessibleContext().setAccessibleName("");
-
-        btnTestSQL.setText("TestSQL");
-        btnTestSQL.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnTestSQLActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Exit");
         jButton1.setName("btnExit"); // NOI18N
@@ -210,43 +191,34 @@ public class MainWindow extends javax.swing.JFrame
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mRateItButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
-                                .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(119, 119, 119)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnTestSQL)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblMsg)))
+                                .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblMsg))
+                        .addGap(12, 12, 12))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelCategory)
+                        .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblMsg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabelCategory)
-                                        .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblMsg))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(mRateItButton)
-                                .addComponent(jButton2))
-                            .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnTestSQL, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(mRateItButton)
+                        .addComponent(jButton2))
+                    .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -322,43 +294,6 @@ public class MainWindow extends javax.swing.JFrame
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnTestSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestSQLActionPerformed
-        String res = JOptionPane.showInputDialog(null, "Enter SQL Query");
-        if (res == null || res.equals(""))
-        {
-            return;
-        }
-        ResultSet rs = SQLHelper.GetResultSetFromQuery(res);
-        if (rs == null)
-        {
-            SetStatusWindowText("Error executing query '" + res + "'");
-            AppendStatusWindow(SQLHelper.GetStatus());
-            return;
-        }
-
-        EmptyStatusWindow();
-
-        try
-        {
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int n = 0;
-            while (rs.next())
-            {
-                AppendStatusWindow("-----Result" + n++ + "-----");
-                for (int i = 1; i < rsmd.getColumnCount(); i++)
-                {
-                    String out = rs.getString(i);
-                    AppendStatusWindow(rsmd.getColumnName(i) + ": " + out);
-                }
-            }
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e);
-            AppendStatusWindow(e.toString());
-        }
-    }//GEN-LAST:event_btnTestSQLActionPerformed
-
     //Ändrar content utefter vilken titel som är vald i jList
     private void mPunListWindowValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mPunListWindowValueChanged
        if(mPunListWindow.getSelectedIndex() >= 0)
@@ -390,33 +325,10 @@ public class MainWindow extends javax.swing.JFrame
         }
     }//GEN-LAST:event_mRateItButtonActionPerformed
 
-    public void AppendStatusWindow(String text)
-    {
-        if (!txtStatus.getText().equals(""))
-        {
-            txtStatus.setText(txtStatus.getText() + "\n" + text);
-        }
-        else
-        {
-             txtStatus.setText(text);
-        }
-        
-    }
-
-    public void SetStatusWindowText(String text)
-    {
-        txtStatus.setText(text);
-    }
-
     public void UpdateUsername(String newUsername)
     {
         userName = newUsername;
         lblMsg.setText(welcomeMsg + userName + "!");
-    }
-
-    public void EmptyStatusWindow()
-    {
-        txtStatus.setText("");
     }
     
     public void RegisterUser(User user)
@@ -440,12 +352,10 @@ public class MainWindow extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnTestSQL;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCategory;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblMsg;
@@ -454,6 +364,5 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JList mPunListWindow;
     private javax.swing.JButton mRateItButton;
     private javax.swing.JSlider mRateSlider;
-    private javax.swing.JEditorPane txtStatus;
     // End of variables declaration//GEN-END:variables
 }

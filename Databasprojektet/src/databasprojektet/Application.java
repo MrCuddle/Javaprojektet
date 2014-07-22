@@ -18,10 +18,7 @@
 package databasprojektet;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -69,13 +66,13 @@ public class Application{
             public void run()
             {
                 SQLHelper.Connect();
-                mainWindow.AppendStatusWindow(SQLHelper.GetStatus());
+                System.out.println(SQLHelper.GetStatus());
                 try {
                    ResultSet rs = SQLHelper.GetResultSetFromQuery("Select Content from pun");
                    while(rs.next())
                    {
                         String outputPun = rs.getString("Content");
-                        mainWindow.AppendStatusWindow(outputPun);
+                        System.out.println(SQLHelper.GetStatus());
                    } 
                 }
                    catch (SQLException e) {

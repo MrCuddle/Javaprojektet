@@ -18,7 +18,6 @@ package databasprojektet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 /**
  *
@@ -38,6 +37,7 @@ public class LoginWindow extends javax.swing.JFrame
     {
         this.parent = parent;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -47,7 +47,8 @@ public class LoginWindow extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         btnOK = new javax.swing.JButton();
         txfName = new javax.swing.JTextField();
@@ -59,7 +60,7 @@ public class LoginWindow extends javax.swing.JFrame
         psfPassword = new javax.swing.JPasswordField();
         lblLoginResults = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
         setBackground(new java.awt.Color(0, 0, 0));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -71,8 +72,10 @@ public class LoginWindow extends javax.swing.JFrame
 
         btnOK.setText("OK");
         btnOK.setName("btnOK"); // NOI18N
-        btnOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnOK.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnOKActionPerformed(evt);
             }
         });
@@ -81,8 +84,10 @@ public class LoginWindow extends javax.swing.JFrame
 
         btnCancel.setText("Avbryt");
         btnCancel.setName("btnCancel"); // NOI18N
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCancel.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnCancelActionPerformed(evt);
             }
         });
@@ -95,8 +100,10 @@ public class LoginWindow extends javax.swing.JFrame
 
         btnNewUser.setText("Skapa profil");
         btnNewUser.setName("btnNewUser"); // NOI18N
-        btnNewUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNewUser.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNewUserActionPerformed(evt);
             }
         });
