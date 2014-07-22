@@ -37,6 +37,7 @@ public class MainWindow extends javax.swing.JFrame
     private String userName = "Gäst";
     private String welcomeMsg = "Välkommen ";
     ArrayList<Pun> mPunList = new ArrayList<Pun>();
+    ArrayList<Pun> mPunListShown = new ArrayList<Pun>();
     private User mActiveUser = null;
     /**
      * Creates new form MainWindow
@@ -53,9 +54,17 @@ public class MainWindow extends javax.swing.JFrame
             public void actionPerformed(ActionEvent e)
             {
                 String s = (String) mCategoryComboBox.getSelectedItem();
-                
+                if(s.equals("Visa alla"))
+                {
+                    ChangeCategoryShown();
+                }
+                else
+                {
+                    ChangeCategoryShown(s);
+                }
             }
         };
+        mCategoryComboBox.addActionListener(categoryCbActionListener);
     }
     
     private void InitializeCategories()
@@ -238,10 +247,35 @@ public class MainWindow extends javax.swing.JFrame
         {
             System.out.println(e);
         }
+        ChangeCategoryShown();
+    }
+    
+    private void ChangeCategoryShown()
+    {
+        mPunListShown.clear();
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for(int i = 0; i < mPunList.size(); i++)
         {
+            mPunListShown.add(mPunList.get(i));
             listModel.addElement(mPunList.get(i).GetTitle());
+        }
+        mPunListWindow.setModel(listModel);
+    }
+    private void ChangeCategoryShown(String category)
+    {
+        mPunListShown.clear();
+        for (Pun pun : mPunList) 
+        {
+            if (category.equals(pun.GetCategory())) 
+            {
+                mPunListShown.add(pun);
+            }
+        } 
+        
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for(Pun pun : mPunListShown)
+        {
+            listModel.addElement(pun.GetTitle());
         }
         mPunListWindow.setModel(listModel);
     }
@@ -296,7 +330,10 @@ public class MainWindow extends javax.swing.JFrame
 
     //Ändrar content utefter vilken titel som är vald i jList
     private void mPunListWindowValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mPunListWindowValueChanged
-       mPunContentWindow.setText(mPunList.get(mPunListWindow.getSelectedIndex()).GetContent());
+       if(mPunListWindow.getSelectedIndex() >= 0)
+       {
+            mPunContentWindow.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetContent());
+       }
     }//GEN-LAST:event_mPunListWindowValueChanged
 
     public void AppendStatusWindow(String text)

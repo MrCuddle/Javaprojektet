@@ -73,6 +73,10 @@ public class Pun {
         return mTitle;
     }
     
+    public String GetCategory()
+    {
+        return mCategory;
+    }
     //Bör skickas till databasen också/istället
     public void ThisIsOffensive()
     {
