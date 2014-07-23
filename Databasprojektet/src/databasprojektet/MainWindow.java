@@ -276,6 +276,7 @@ public class MainWindow extends javax.swing.JFrame
     {
         mPunList.clear();
         InitializePuns();
+        mPunContentWindow.setText("");
     }
 
     private void InitializeSlider()

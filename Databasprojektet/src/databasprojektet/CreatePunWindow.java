@@ -30,13 +30,15 @@ import java.util.logging.Logger;
 public class CreatePunWindow extends javax.swing.JFrame
 {
 
-    MainWindow mParent;
+    MainWindow mGrandParent;
+    AdminWindow mParent;
 
     /**
      * Creates new form NewPunWindow
      */
-    public CreatePunWindow(MainWindow parent)
+    public CreatePunWindow(MainWindow grandParent, AdminWindow parent)
     {
+        mGrandParent = grandParent;
         mParent = parent;
         initComponents();
         InitializeCategories();
@@ -110,6 +112,7 @@ public class CreatePunWindow extends javax.swing.JFrame
         mCategoryLabel.setText("Kategori");
 
         mNewCategoryButton.setText("Ny Kategori");
+        mNewCategoryButton.setEnabled(false);
         mNewCategoryButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -181,7 +184,7 @@ public class CreatePunWindow extends javax.swing.JFrame
 
     private void mCancelButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mCancelButtonActionPerformed
     {//GEN-HEADEREND:event_mCancelButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_mCancelButtonActionPerformed
 
     
@@ -190,7 +193,7 @@ public class CreatePunWindow extends javax.swing.JFrame
         int punId = GetValidID();
         String content = mPunContentWindow.getText();
         String category = (String) mCategoryComboBox.getSelectedItem();
-        int adder = mParent.GetActiveUser().GetId();
+        int adder = mGrandParent.GetActiveUser().GetId();
         Date date = Application.GetCurrentDate();
         String title = mTitleField.getText();
         
@@ -203,7 +206,9 @@ public class CreatePunWindow extends javax.swing.JFrame
                 ", '" + title +
                 "');";
         SQLHelper.ExecuteUpdate(newPunQuery);
+        mGrandParent.UpdatePuns();
         mParent.UpdatePuns();
+        dispose();
     }
 
     /**

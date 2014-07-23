@@ -324,6 +324,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="mUserField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mUserFieldActionPerformed"/>
               </Events>
@@ -334,6 +337,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="mTitleField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="mDateLabel">
               <Properties>
@@ -341,6 +347,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="mDateField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="mDeletePunButton">
               <Properties>
@@ -353,6 +362,7 @@
             <Component class="javax.swing.JButton" name="mNewCategoryButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ny Kategori"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>

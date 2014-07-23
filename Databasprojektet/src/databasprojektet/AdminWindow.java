@@ -171,6 +171,22 @@ public class AdminWindow extends javax.swing.JFrame
         }
         mPunListWindow.setModel(listModel);
     }
+    
+    public void UpdatePuns()
+    {
+
+        InitializePuns();
+        String s = (String) mCategoryComboBox.getSelectedItem();
+        if (s.equals("Visa alla"))
+                {
+                    ChangeCategoryShown();
+                }
+                else
+                {
+                    ChangeCategoryShown(s);
+                }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -316,6 +332,7 @@ public class AdminWindow extends javax.swing.JFrame
 
         mUserLabel.setText("Användare:");
 
+        mUserField.setEditable(false);
         mUserField.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -326,7 +343,11 @@ public class AdminWindow extends javax.swing.JFrame
 
         mTitleLabel.setText("Titel");
 
+        mTitleField.setEditable(false);
+
         mDateLabel.setText("Datum");
+
+        mDateField.setEditable(false);
 
         mDeletePunButton.setText("Ta Bort Skämt");
         mDeletePunButton.addActionListener(new java.awt.event.ActionListener()
@@ -338,6 +359,7 @@ public class AdminWindow extends javax.swing.JFrame
         });
 
         mNewCategoryButton.setText("Ny Kategori");
+        mNewCategoryButton.setEnabled(false);
 
         javax.swing.GroupLayout pnlPunLayout = new javax.swing.GroupLayout(pnlPun);
         pnlPun.setLayout(pnlPunLayout);
@@ -513,7 +535,7 @@ public class AdminWindow extends javax.swing.JFrame
 
     private void mNewPunButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mNewPunButtonActionPerformed
     {//GEN-HEADEREND:event_mNewPunButtonActionPerformed
-        CreatePunWindow pwnd = new CreatePunWindow(mParent);
+        CreatePunWindow pwnd = new CreatePunWindow(mParent, this);
         pwnd.setVisible(true);
     }//GEN-LAST:event_mNewPunButtonActionPerformed
 
@@ -610,6 +632,8 @@ public class AdminWindow extends javax.swing.JFrame
         {
             System.out.println("Pun not found and could not be deleted");
         }
+        
+        mParent.UpdatePuns();
     }//GEN-LAST:event_mDeletePunButtonActionPerformed
 
     private void mSQLQueryButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mSQLQueryButtonActionPerformed
