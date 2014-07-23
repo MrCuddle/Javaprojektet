@@ -28,18 +28,18 @@ import java.util.logging.Logger;
 public class SQLHelper
 {
 
-    private static Connection con;
-    private static Statement statement;
-    private static final String userName = "ab4784", userPass = "gruvfyllo";
-    private static final String hostIP = "195.178.232.7", hostPort = "4040";
-    private static final String connectionFormat = "jdbc:mysql://" + hostIP + ":" + hostPort + "/" + userName;
-    private static final String sqlHelperPrefix = "SQLHelper: ";
+    private static Connection mConnection;
+    private static Statement mStatement;
+    private static final String mUserName = "ab4784", mUserPassword = "gruvfyllo";
+    private static final String mHostIp = "195.178.232.7", mHostPort = "4040";
+    private static final String mConnectionFormat = "jdbc:mysql://" + mHostIp + ":" + mHostPort + "/" + mUserName;
+    private static final String mSqlHelperPrefix = "SQLHelper: ";
 
     public static String GetHostURL()
     {
         try
         {
-            return con.getMetaData().getURL();
+            return mConnection.getMetaData().getURL();
         }
         catch (SQLException ex)
         {
@@ -50,14 +50,14 @@ public class SQLHelper
 
     public static String GetHostIP()
     {
-        return hostIP;
+        return mHostIp;
     }
 
     public static String GetHostName()
     {
         try
         {
-            return con.getMetaData().getUserName();
+            return mConnection.getMetaData().getUserName();
         }
         catch (SQLException ex)
         {
@@ -65,15 +65,15 @@ public class SQLHelper
         }
         return null;
     }
-    
+
     public static ArrayList<String> GetTableNames()
     {
         ArrayList<String> res = new ArrayList<>();
         try
         {
-            ResultSet rs = con.getMetaData().getTables(null, null, "%", null);
+            ResultSet rs = mConnection.getMetaData().getTables(null, null, "%", null);
             while (rs.next())
-            {                
+            {
                 res.add(rs.getString(3));
             }
         }
@@ -81,7 +81,7 @@ public class SQLHelper
         {
             Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return res;
     }
 
@@ -93,18 +93,18 @@ public class SQLHelper
         }
         catch (ClassNotFoundException e)
         {
-            System.out.println(sqlHelperPrefix + "Databas-driver hittades ej " + e);
+            System.out.println(mSqlHelperPrefix + "Databas-driver hittades ej " + e);
             return false;
         }
 
         try
         {
-            con = DriverManager.getConnection(connectionFormat, userName, userPass);
-            statement = con.createStatement();
+            mConnection = DriverManager.getConnection(mConnectionFormat, mUserName, mUserPassword);
+            mStatement = mConnection.createStatement();
         }
         catch (SQLException e)
         {
-            System.out.println(sqlHelperPrefix + "Kunde inte ansluta till databasen " + e);
+            System.out.println(mSqlHelperPrefix + "Kunde inte ansluta till databasen " + e);
             return false;
         }
 
@@ -113,11 +113,11 @@ public class SQLHelper
 
     public static boolean Disconnect()
     {
-        if (con != null)
+        if (mConnection != null)
         {
             try
             {
-                con.close();
+                mConnection.close();
             }
             catch (SQLException e)
             {
@@ -133,15 +133,15 @@ public class SQLHelper
     //observera att anslutningen fortfarande kan ha avbrutits på annat sätt
     public static boolean IsConnected()
     {
-        if (con != null)
+        if (mConnection != null)
         {
             try
             {
-                return !con.isClosed();
+                return !mConnection.isClosed();
             }
             catch (SQLException e)
             {
-                System.out.println(sqlHelperPrefix + e);
+                System.out.println(mSqlHelperPrefix + e);
             }
         }
         return false;
@@ -150,15 +150,15 @@ public class SQLHelper
 
     public static ResultSet GetResultSetFromQuery(String command)
     {
-        if (statement != null)
+        if (mStatement != null)
         {
             try
             {
-                return statement.executeQuery(command);
+                return mStatement.executeQuery(command);
             }
             catch (SQLException e)
             {
-                System.out.println(sqlHelperPrefix + e);
+                System.out.println(mSqlHelperPrefix + e);
                 return null;
             }
         }
@@ -170,11 +170,11 @@ public class SQLHelper
     {
         try
         {
-            statement.executeUpdate(command);
+            mStatement.executeUpdate(command);
         }
         catch (SQLException e)
         {
-            System.out.println(sqlHelperPrefix + e);
+            System.out.println(mSqlHelperPrefix + e);
         }
     }
 
@@ -182,17 +182,49 @@ public class SQLHelper
     {
         try
         {
-            statement.executeQuery(command);
+            mStatement.executeQuery(command);
         }
         catch (SQLException e)
         {
-            System.out.println(sqlHelperPrefix + e);
+            System.out.println(mSqlHelperPrefix + e);
         }
     }
 
     public static String GetStatus()
     {
-        return sqlHelperPrefix + "Connected:" + IsConnected() + " HostIP:" + hostIP + " Port:" + hostPort;
+        return mSqlHelperPrefix + "Connected:" + IsConnected() + " HostIP:" + mHostIp + " Port:" + mHostPort;
+    }
+
+    public static int GetRowCount(ResultSet rs)
+    {
+        int res = 0;
+        try
+        {
+            rs.last();
+            res = rs.getRow();
+            rs.beforeFirst();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return res;
+    }
+    
+    public static int GetColumnCount(ResultSet rs)
+    {
+        int res = 0;
+        try
+        {
+            res = rs.getMetaData().getColumnCount();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return res;
     }
 
     public static void PrintResultSet(ResultSet rs)
@@ -221,7 +253,7 @@ public class SQLHelper
         }
         else
         {
-            System.out.println(sqlHelperPrefix + "ResultSet==NULL");
+            System.out.println(mSqlHelperPrefix + "ResultSet==NULL");
         }
 
     }

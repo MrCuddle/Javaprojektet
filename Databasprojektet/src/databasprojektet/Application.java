@@ -17,8 +17,11 @@
 
 package databasprojektet;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -27,8 +30,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class Application{
-    private final String lookAndFeelPath = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
-    private MainWindow mainWindow;
+    private final String mLookAndFeelPath = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
+    private MainWindow mMainWindow;
     
     
     public Application()
@@ -40,7 +43,7 @@ public class Application{
     private void Initialize() {
         try
         {
-            UIManager.setLookAndFeel(lookAndFeelPath);
+            UIManager.setLookAndFeel(mLookAndFeelPath);
         }
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e)
         {
@@ -52,9 +55,9 @@ public class Application{
     {
         System.out.println("Started");
         SQLHelper.Connect();
-        mainWindow = new MainWindow();
+        mMainWindow = new MainWindow();
         
-        mainWindow.setVisible(true);
+        mMainWindow.setVisible(true);
         
     }
 
@@ -80,5 +83,11 @@ public class Application{
                 }
             }
         }.start();
+    }
+    
+    public static Date GetCurrentDate()
+    {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        return new Date(System.currentTimeMillis());
     }
 }

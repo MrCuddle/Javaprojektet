@@ -65,12 +65,12 @@
 
           <Layout>
             <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="btnRemoveUser" min="-2" max="-2" attributes="0"/>
+                      <Component id="mRemoveUserButton" min="-2" pref="127" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnNewUser" min="-2" max="-2" attributes="0"/>
+                      <Component id="mNewUserButton" min="-2" pref="127" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -91,20 +91,20 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnNewUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnRemoveUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mNewUserButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mRemoveUserButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnNewUser">
+            <Component class="javax.swing.JButton" name="mNewUserButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ny Anv&#xe4;ndare"/>
+                <Property name="text" type="java.lang.String" value="L&#xe4;gg Till Anv&#xe4;ndare"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewUserActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mNewUserButtonActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -114,7 +114,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JList" name="jListUsers">
+                <Component class="javax.swing.JList" name="mUserWindow">
                   <Properties>
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                       <StringArray count="0"/>
@@ -130,20 +130,21 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="txtUserInfo">
+                <Component class="javax.swing.JTextArea" name="mUserInfoContent">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnRemoveUser">
+            <Component class="javax.swing.JButton" name="mRemoveUserButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ta bort anv&#xe4;ndare"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveUserActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mRemoveUserButtonActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -162,9 +163,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="btnDeletePun" min="-2" max="-2" attributes="0"/>
+                      <Component id="mDeletePunButton" min="-2" pref="127" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnNewPun" min="-2" pref="103" max="-2" attributes="0"/>
+                      <Component id="mNewPunButton" min="-2" pref="127" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -174,7 +175,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="mCategoryComboBox" min="-2" pref="98" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnNewCategory" min="-2" max="-2" attributes="0"/>
+                              <Component id="mNewCategoryButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -184,19 +185,19 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mTitleLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="mTitleContent" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <Component id="mTitleField" min="-2" pref="112" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mDateLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="mDateContent" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <Component id="mDateField" min="-2" pref="112" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mUserLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="mUserContent" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <Component id="mUserField" min="-2" pref="112" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -218,7 +219,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="mCategoryComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelCategory" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnNewCategory" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mNewCategoryButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -226,26 +227,26 @@
                               <Component id="jScrollPane3" min="-2" pref="275" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnNewPun" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnDeletePun" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mNewPunButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mDeletePunButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="mTitleContent" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mTitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mTitleField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="mDateContent" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mDateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mDateField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="mUserContent" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mUserField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -255,12 +256,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnNewPun">
+            <Component class="javax.swing.JButton" name="mNewPunButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nytt Sk&#xe4;mt"/>
+                <Property name="text" type="java.lang.String" value="L&#xe4;gg Till Sk&#xe4;mt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewPunActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mNewPunButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="mCategoryComboBox">
@@ -309,6 +310,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="mPunContentWindow">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
@@ -316,39 +318,39 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="mUserLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Anv&#xe4;ndare:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="mUserContent">
+            <Component class="javax.swing.JTextField" name="mUserField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mUserContentActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mUserFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="mTitleLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Titel"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="mTitleContent">
+            <Component class="javax.swing.JTextField" name="mTitleField">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
+            <Component class="javax.swing.JLabel" name="mDateLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Datum"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="mDateContent">
+            <Component class="javax.swing.JTextField" name="mDateField">
             </Component>
-            <Component class="javax.swing.JButton" name="btnDeletePun">
+            <Component class="javax.swing.JButton" name="mDeletePunButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Radera Sk&#xe4;mt"/>
+                <Property name="text" type="java.lang.String" value="Ta Bort Sk&#xe4;mt"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletePunActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mDeletePunButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnNewCategory">
+            <Component class="javax.swing.JButton" name="mNewCategoryButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ny Kategori"/>
               </Properties>
@@ -373,19 +375,19 @@
                           <Group type="102" attributes="0">
                               <Component id="mSQLQueryButton" min="-2" pref="135" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <Component id="mSQLWarningLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane5" min="-2" pref="233" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="mDatabaseLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                       <Component id="mDatabaseField" pref="184" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="mServerLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="mServerField" max="32767" attributes="0"/>
                                   </Group>
@@ -404,12 +406,12 @@
                           <Component id="jScrollPane5" min="-2" pref="273" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mServerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="mServerField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="mDatabaseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="mDatabaseField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -417,7 +419,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="mSQLQueryButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mSQLWarningLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="31" max="32767" attributes="0"/>
                   </Group>
@@ -434,6 +436,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="mSQLContentWindow">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
@@ -448,27 +451,33 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mSQLQueryButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="mSQLWarningLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;-- Obs! Endast f&#xf6;r avancerade anv&#xe4;ndare ;)"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="mServerLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Server"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="mDatabaseLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Databas"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="mServerField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mServerFieldActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="mDatabaseField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

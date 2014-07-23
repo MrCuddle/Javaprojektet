@@ -46,26 +46,23 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="psfPassword" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txfName" alignment="0" pref="250" max="32767" attributes="0"/>
+                          <Component id="mPasswordField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="mNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="mPasswordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="mNameField" alignment="0" pref="250" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnNewUser" max="32767" attributes="0"/>
+                      <Component id="mCreateProfileButton" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnOK" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCancel" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lbLoginResult" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblLoginResults" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblLoginResults" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="mOkButton" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="mCancelButton" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbLoginResult" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="183" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -76,79 +73,89 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblName" min="-2" max="-2" attributes="0"/>
+              <Component id="mNameLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txfName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnNewUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mNameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mCreateProfileButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
+              <Component id="mPasswordLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="psfPassword" min="-2" max="-2" attributes="0"/>
+              <Component id="mPasswordField" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnOK" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbLoginResult" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Component id="lbLoginResult" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblLoginResults" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="mCancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="mOkButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Component id="lblLoginResults" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnOK">
+    <Component class="javax.swing.JButton" name="mOkButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="OK"/>
-        <Property name="name" type="java.lang.String" value="btnOK" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="mOkButton" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOKActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mOkButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txfName">
+    <Component class="javax.swing.JTextField" name="mNameField">
       <Properties>
-        <Property name="name" type="java.lang.String" value="txfName" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="bob"/>
+        <Property name="name" type="java.lang.String" value="mNameField" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnCancel">
+    <Component class="javax.swing.JButton" name="mCancelButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Avbryt"/>
-        <Property name="name" type="java.lang.String" value="btnCancel" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="mCancelButton" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mCancelButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblName">
+    <Component class="javax.swing.JLabel" name="mNameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Namn"/>
-        <Property name="name" type="java.lang.String" value="lblName" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="mNameLabel" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblPassword">
+    <Component class="javax.swing.JLabel" name="mPasswordLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="L&#xf6;senord"/>
-        <Property name="name" type="java.lang.String" value="lblPassword" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="mPasswordLabel" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnNewUser">
+    <Component class="javax.swing.JButton" name="mCreateProfileButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Skapa profil"/>
-        <Property name="name" type="java.lang.String" value="btnNewUser" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="mCreateProfileButton" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewUserActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mCreateProfileButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbLoginResult">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="psfPassword">
+    <Component class="javax.swing.JPasswordField" name="mPasswordField">
       <Properties>
-        <Property name="name" type="java.lang.String" value="psfPassword" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="123"/>
+        <Property name="name" type="java.lang.String" value="mPasswordField" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLoginResults">

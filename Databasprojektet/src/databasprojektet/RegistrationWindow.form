@@ -27,20 +27,20 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txfName" max="32767" attributes="0"/>
-                  <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPass" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblConfirmPass" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="mNameField" max="32767" attributes="0"/>
+                  <Component id="mNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="mPasswordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="mConfirmPasswordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnConfirm" min="-2" max="-2" attributes="0"/>
+                      <Component id="mOkButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="chkAdmin" min="-2" max="-2" attributes="0"/>
+                      <Component id="mAdminCheckbox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="txtPass" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtConfirmPass" max="32767" attributes="0"/>
+                  <Component id="mPasswordField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="mConfirmPasswordField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -50,22 +50,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-              <Component id="lblName" min="-2" max="-2" attributes="0"/>
+              <Component id="mNameLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Component id="txfName" min="-2" max="-2" attributes="0"/>
+              <Component id="mNameField" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblPass" min="-2" max="-2" attributes="0"/>
+              <Component id="mPasswordLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="txtPass" min="-2" max="-2" attributes="0"/>
+              <Component id="mPasswordField" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblConfirmPass" min="-2" max="-2" attributes="0"/>
+              <Component id="mConfirmPasswordLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtConfirmPass" min="-2" max="-2" attributes="0"/>
+              <Component id="mConfirmPasswordField" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="btnConfirm" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="chkAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="mOkButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="mAdminCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -75,44 +75,44 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txfName">
+    <Component class="javax.swing.JTextField" name="mNameField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfNameActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mNameFieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblName">
+    <Component class="javax.swing.JLabel" name="mNameLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Namn"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblPass">
+    <Component class="javax.swing.JLabel" name="mPasswordLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="L&#xf6;senord"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblConfirmPass">
+    <Component class="javax.swing.JLabel" name="mConfirmPasswordLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bekr&#xe4;fta l&#xf6;senord"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnConfirm">
+    <Component class="javax.swing.JButton" name="mOkButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mOkButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtPass">
+    <Component class="javax.swing.JPasswordField" name="mPasswordField">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtConfirmPass">
+    <Component class="javax.swing.JPasswordField" name="mConfirmPasswordField">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="name" type="java.lang.String" value="jlblMessage" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="chkAdmin">
+    <Component class="javax.swing.JCheckBox" name="mAdminCheckbox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Administrat&#xf6;r"/>
       </Properties>

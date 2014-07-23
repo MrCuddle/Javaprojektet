@@ -29,19 +29,20 @@ import javax.swing.DefaultListModel;
  */
 public class MainWindow extends javax.swing.JFrame
 {
-    
-    private String userName = "Gäst";
-    private final String welcomeMsg = "Välkommen ";
+
+    private String mUserName = "Gäst";
+    private final String mWelcomeMsg = "Välkommen ";
     ArrayList<Pun> mPunList = new ArrayList<Pun>();
     ArrayList<Pun> mPunListShown = new ArrayList<Pun>();
     private User mActiveUser = null;
+
     /**
      * Creates new form MainWindow
      */
     public MainWindow()
     {
         initComponents();
-        lblMsg.setText(welcomeMsg + userName + "!");
+        mMessageLabel.setText(mWelcomeMsg + mUserName + "!");
         InitializeCategories();
         InitializePuns();
         InitializeSlider();
@@ -51,7 +52,7 @@ public class MainWindow extends javax.swing.JFrame
             public void actionPerformed(ActionEvent e)
             {
                 String s = (String) mCategoryComboBox.getSelectedItem();
-                if(s.equals("Visa alla"))
+                if (s.equals("Visa alla"))
                 {
                     ChangeCategoryShown();
                 }
@@ -63,23 +64,24 @@ public class MainWindow extends javax.swing.JFrame
         };
         mCategoryComboBox.addActionListener(categoryCbActionListener);
     }
-    
+
     private void InitializeCategories()
     {
         mCategoryComboBox.addItem("Visa alla");
         ResultSet categoriesFromDb = SQLHelper.GetResultSetFromQuery("SELECT Name from category");
         try
         {
-        while(categoriesFromDb.next())
+            while (categoriesFromDb.next())
             {
                 mCategoryComboBox.addItem(categoriesFromDb.getString("Name"));
             }
         }
-        catch(SQLException e)
+        catch (SQLException e)
         {
             System.out.println(e);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,18 +92,18 @@ public class MainWindow extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jButton1 = new javax.swing.JButton();
+        mExitButton = new javax.swing.JButton();
         mCategoryComboBox = new javax.swing.JComboBox();
         jLabelCategory = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         mPunContentWindow = new javax.swing.JTextArea();
-        lblMsg = new javax.swing.JLabel();
+        mMessageLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         mPunListWindow = new javax.swing.JList();
         mRateSlider = new javax.swing.JSlider();
         mRateItButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        mProfileButton = new javax.swing.JButton();
+        mApplicationTitleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hej");
@@ -109,24 +111,33 @@ public class MainWindow extends javax.swing.JFrame
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
-        jButton1.setText("Exit");
-        jButton1.setName("btnExit"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        mExitButton.setText("Avsluta");
+        mExitButton.setName("btnExit"); // NOI18N
+        mExitButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                mExitButtonActionPerformed(evt);
+            }
+        });
+
+        mCategoryComboBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mCategoryComboBoxActionPerformed(evt);
             }
         });
 
         jLabelCategory.setText("Kategori");
 
+        mPunContentWindow.setEditable(false);
         mPunContentWindow.setColumns(20);
         mPunContentWindow.setLineWrap(true);
         mPunContentWindow.setRows(5);
         jScrollPane2.setViewportView(mPunContentWindow);
 
-        lblMsg.setText("lblMsg");
+        mMessageLabel.setText("lblMsg");
 
         mPunListWindow.setModel(new javax.swing.AbstractListModel()
         {
@@ -156,18 +167,18 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
-        jButton2.setText("Login");
-        jButton2.setName("btnLogin"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener()
+        mProfileButton.setText("Login/Skapa profil");
+        mProfileButton.setName("btnLogin"); // NOI18N
+        mProfileButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton2ActionPerformed(evt);
+                mProfileButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Narkisim", 1, 18)); // NOI18N
-        jLabel1.setText("JokeGenerator");
+        mApplicationTitleLabel.setFont(new java.awt.Font("Narkisim", 1, 18)); // NOI18N
+        mApplicationTitleLabel.setText("JokeGenerator");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,50 +187,51 @@ public class MainWindow extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mApplicationTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabelCategory)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mProfileButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mRateItButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
-                                .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblMsg))
-                        .addGap(12, 12, 12))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addComponent(mExitButton))
+                            .addComponent(mMessageLabel))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelCategory)
-                        .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblMsg))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(mRateItButton)
-                        .addComponent(jButton2))
-                    .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                    .addComponent(mExitButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(mApplicationTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelCategory)
+                                .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mMessageLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(mRateItButton)
+                                .addComponent(mProfileButton))
+                            .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,30 +243,41 @@ public class MainWindow extends javax.swing.JFrame
         ResultSet punsFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from pun order by Title");
         try
         {
-            while(punsFromDb.next())
-             mPunList.add(new Pun(punsFromDb.getInt("ID"), punsFromDb.getString("Title"), punsFromDb.getString("Content")
-                     , punsFromDb.getString("Category"), punsFromDb.getInt("Adder"), punsFromDb.getDate("Date")));
+            while (punsFromDb.next())
+            {
+                mPunList.add(new Pun(punsFromDb.getInt("ID"), punsFromDb.getString("Title"), punsFromDb.getString("Content"), punsFromDb.getString("Category"), punsFromDb.getInt("Adder"), punsFromDb.getDate("Date")));
+            }
 
         }
-        catch(SQLException e)
+        catch (SQLException e)
         {
             System.out.println(e);
         }
         ChangeCategoryShown();
     }
-    
+
     private void ChangeCategoryShown()
     {
         mPunListShown.clear();
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        for(int i = 0; i < mPunList.size(); i++)
+        for (int i = 0; i < mPunList.size(); i++)
         {
             mPunListShown.add(mPunList.get(i));
             listModel.addElement(mPunList.get(i).GetTitle());
         }
         mPunListWindow.setModel(listModel);
     }
-    
+
+    /**
+     * Updates the list of puns in the mainWindow Should be called whenever a
+     * pun is added or deleted
+     */
+    public void UpdatePuns()
+    {
+        mPunList.clear();
+        InitializePuns();
+    }
+
     private void InitializeSlider()
     {
         mRateSlider.setMinimum(1);
@@ -264,73 +287,79 @@ public class MainWindow extends javax.swing.JFrame
         mRateSlider.setPaintTicks(true);
         mRateSlider.setPaintLabels(true);
     }
+
     private void ChangeCategoryShown(String category)
     {
         mPunListShown.clear();
-        for (Pun pun : mPunList) 
+        for (Pun pun : mPunList)
         {
-            if (category.equals(pun.GetCategory())) 
+            if (category.equals(pun.GetCategory()))
             {
                 mPunListShown.add(pun);
             }
-        } 
-        
+        }
+
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        for(Pun pun : mPunListShown)
+        for (Pun pun : mPunListShown)
         {
             listModel.addElement(pun.GetTitle());
         }
         mPunListWindow.setModel(listModel);
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void mExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExitButtonActionPerformed
 
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_mExitButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void mProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mProfileButtonActionPerformed
 
         LoginWindow login = new LoginWindow(this);
         login.setVisible(true);
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_mProfileButtonActionPerformed
 
     //Ändrar content utefter vilken titel som är vald i jList
     private void mPunListWindowValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_mPunListWindowValueChanged
-       if(mPunListWindow.getSelectedIndex() >= 0)
-       {
+        if (mPunListWindow.getSelectedIndex() >= 0)
+        {
             mPunContentWindow.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetContent());
-       }
+        }
     }//GEN-LAST:event_mPunListWindowValueChanged
 
     private void mRateItButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRateItButtonActionPerformed
-        ResultSet rs = SQLHelper.GetResultSetFromQuery("SELECT * FROM rating WHERE UserID = '" + mActiveUser.GetId()+ "' AND PunID = '" 
+        ResultSet rs = SQLHelper.GetResultSetFromQuery("SELECT * FROM rating WHERE UserID = '" + mActiveUser.GetId() + "' AND PunID = '"
                 + mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "'");
         try
         {
-            if(rs.next())
+            if (rs.next())
             {
-                SQLHelper.ExecuteUpdate("UPDATE rating SET Rating = '" + mRateSlider.getValue() + 
-                        "' WHERE UserID = '" + mActiveUser.GetId() + "' AND PunID = '" + 
-                        mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "'") ;
+                SQLHelper.ExecuteUpdate("UPDATE rating SET Rating = '" + mRateSlider.getValue()
+                        + "' WHERE UserID = '" + mActiveUser.GetId() + "' AND PunID = '"
+                        + mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "'");
             }
             else
             {
-                SQLHelper.ExecuteUpdate("INSERT INTO rating VALUES ('" + mActiveUser.GetId() + 
-                 "', '" + mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "', '" + mRateSlider.getValue() +"')");
+                SQLHelper.ExecuteUpdate("INSERT INTO rating VALUES ('" + mActiveUser.GetId()
+                        + "', '" + mPunListShown.get(mPunListWindow.getSelectedIndex()).GetID() + "', '" + mRateSlider.getValue() + "')");
             }
         }
-        catch(SQLException e)
+        catch (SQLException e)
         {
             System.out.println(e);
         }
     }//GEN-LAST:event_mRateItButtonActionPerformed
 
+    private void mCategoryComboBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mCategoryComboBoxActionPerformed
+    {//GEN-HEADEREND:event_mCategoryComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mCategoryComboBoxActionPerformed
+
     public void UpdateUsername(String newUsername)
     {
-        userName = newUsername;
-        lblMsg.setText(welcomeMsg + userName + "!");
+        mUserName = newUsername;
+        mMessageLabel.setText(mWelcomeMsg + mUserName + "!");
     }
-    
+
     public void RegisterUser(User user)
     {
         mActiveUser = user;
@@ -345,21 +374,26 @@ public class MainWindow extends javax.swing.JFrame
             a.setVisible(true);
         }
     }
-    
+
     public ArrayList<Pun> GetPunList()
     {
         return mPunList;
     }
 
+    public User GetActiveUser()
+    {
+        return mActiveUser;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCategory;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblMsg;
+    private javax.swing.JLabel mApplicationTitleLabel;
     private javax.swing.JComboBox mCategoryComboBox;
+    private javax.swing.JButton mExitButton;
+    private javax.swing.JLabel mMessageLabel;
+    private javax.swing.JButton mProfileButton;
     private javax.swing.JTextArea mPunContentWindow;
     private javax.swing.JList mPunListWindow;
     private javax.swing.JButton mRateItButton;

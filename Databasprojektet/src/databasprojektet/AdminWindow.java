@@ -138,7 +138,7 @@ public class AdminWindow extends javax.swing.JFrame
         {
             listModel.addElement(mUserList.get(i).GetName());
         }
-        jListUsers.setModel(listModel);
+        mUserWindow.setModel(listModel);
     }
 
     private void ChangeCategoryShown()
@@ -186,35 +186,35 @@ public class AdminWindow extends javax.swing.JFrame
         jTextField3 = new javax.swing.JTextField();
         jTabbedPane = new javax.swing.JTabbedPane();
         pnlUser = new javax.swing.JPanel();
-        btnNewUser = new javax.swing.JButton();
+        mNewUserButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListUsers = new javax.swing.JList();
+        mUserWindow = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtUserInfo = new javax.swing.JTextArea();
-        btnRemoveUser = new javax.swing.JButton();
+        mUserInfoContent = new javax.swing.JTextArea();
+        mRemoveUserButton = new javax.swing.JButton();
         pnlPun = new javax.swing.JPanel();
-        btnNewPun = new javax.swing.JButton();
+        mNewPunButton = new javax.swing.JButton();
         mCategoryComboBox = new javax.swing.JComboBox();
         jLabelCategory = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         mPunListWindow = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
         mPunContentWindow = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        mUserContent = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        mTitleContent = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        mDateContent = new javax.swing.JTextField();
-        btnDeletePun = new javax.swing.JButton();
-        btnNewCategory = new javax.swing.JButton();
+        mUserLabel = new javax.swing.JLabel();
+        mUserField = new javax.swing.JTextField();
+        mTitleLabel = new javax.swing.JLabel();
+        mTitleField = new javax.swing.JTextField();
+        mDateLabel = new javax.swing.JLabel();
+        mDateField = new javax.swing.JTextField();
+        mDeletePunButton = new javax.swing.JButton();
+        mNewCategoryButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         mSQLContentWindow = new javax.swing.JTextArea();
         mSQLQueryButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        mSQLWarningLabel = new javax.swing.JLabel();
+        mServerLabel = new javax.swing.JLabel();
+        mDatabaseLabel = new javax.swing.JLabel();
         mServerField = new javax.swing.JTextField();
         mDatabaseField = new javax.swing.JTextField();
 
@@ -226,39 +226,40 @@ public class AdminWindow extends javax.swing.JFrame
         setTitle("Administratör");
         setResizable(false);
 
-        btnNewUser.setText("Ny Användare");
-        btnNewUser.addActionListener(new java.awt.event.ActionListener()
+        mNewUserButton.setText("Lägg Till Användare");
+        mNewUserButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnNewUserActionPerformed(evt);
+                mNewUserButtonActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setViewportView(jListUsers);
+        jScrollPane1.setViewportView(mUserWindow);
 
-        txtUserInfo.setColumns(20);
-        txtUserInfo.setRows(5);
-        jScrollPane2.setViewportView(txtUserInfo);
+        mUserInfoContent.setEditable(false);
+        mUserInfoContent.setColumns(20);
+        mUserInfoContent.setRows(5);
+        jScrollPane2.setViewportView(mUserInfoContent);
 
-        btnRemoveUser.setText("Ta bort användare");
-        btnRemoveUser.addActionListener(new java.awt.event.ActionListener()
+        mRemoveUserButton.setText("Ta bort användare");
+        mRemoveUserButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnRemoveUserActionPerformed(evt);
+                mRemoveUserButtonActionPerformed(evt);
             }
         });
 
         javax.swing.GroupLayout pnlUserLayout = new javax.swing.GroupLayout(pnlUser);
         pnlUser.setLayout(pnlUserLayout);
         pnlUserLayout.setHorizontalGroup(
-            pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUserLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRemoveUser)
+                .addComponent(mRemoveUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNewUser))
+                .addComponent(mNewUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlUserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,18 +276,18 @@ public class AdminWindow extends javax.swing.JFrame
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNewUser)
-                    .addComponent(btnRemoveUser)))
+                    .addComponent(mNewUserButton)
+                    .addComponent(mRemoveUserButton)))
         );
 
         jTabbedPane.addTab("Användare", pnlUser);
 
-        btnNewPun.setText("Nytt Skämt");
-        btnNewPun.addActionListener(new java.awt.event.ActionListener()
+        mNewPunButton.setText("Lägg Till Skämt");
+        mNewPunButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnNewPunActionPerformed(evt);
+                mNewPunButtonActionPerformed(evt);
             }
         });
 
@@ -307,35 +308,36 @@ public class AdminWindow extends javax.swing.JFrame
         });
         jScrollPane3.setViewportView(mPunListWindow);
 
+        mPunContentWindow.setEditable(false);
         mPunContentWindow.setColumns(20);
         mPunContentWindow.setLineWrap(true);
         mPunContentWindow.setRows(5);
         jScrollPane4.setViewportView(mPunContentWindow);
 
-        jLabel1.setText("Användare:");
+        mUserLabel.setText("Användare:");
 
-        mUserContent.addActionListener(new java.awt.event.ActionListener()
+        mUserField.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                mUserContentActionPerformed(evt);
+                mUserFieldActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Titel");
+        mTitleLabel.setText("Titel");
 
-        jLabel4.setText("Datum");
+        mDateLabel.setText("Datum");
 
-        btnDeletePun.setText("Radera Skämt");
-        btnDeletePun.addActionListener(new java.awt.event.ActionListener()
+        mDeletePunButton.setText("Ta Bort Skämt");
+        mDeletePunButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnDeletePunActionPerformed(evt);
+                mDeletePunButtonActionPerformed(evt);
             }
         });
 
-        btnNewCategory.setText("Ny Kategori");
+        mNewCategoryButton.setText("Ny Kategori");
 
         javax.swing.GroupLayout pnlPunLayout = new javax.swing.GroupLayout(pnlPun);
         pnlPun.setLayout(pnlPunLayout);
@@ -343,9 +345,9 @@ public class AdminWindow extends javax.swing.JFrame
             pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPunLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnDeletePun)
+                .addComponent(mDeletePunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNewPun, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(mNewPunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlPunLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,7 +356,7 @@ public class AdminWindow extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNewCategory)
+                        .addComponent(mNewCategoryButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlPunLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,17 +365,17 @@ public class AdminWindow extends javax.swing.JFrame
                             .addGroup(pnlPunLayout.createSequentialGroup()
                                 .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(pnlPunLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
+                                        .addComponent(mTitleLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(mTitleContent, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(mTitleField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnlPunLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
+                                        .addComponent(mDateLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(mDateContent, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(mDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnlPunLayout.createSequentialGroup()
-                                        .addComponent(jLabel1)
+                                        .addComponent(mUserLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(mUserContent, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(mUserField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pnlPunLayout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
@@ -386,34 +388,35 @@ public class AdminWindow extends javax.swing.JFrame
                 .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelCategory)
-                    .addComponent(btnNewCategory))
+                    .addComponent(mNewCategoryButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPunLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNewPun)
-                            .addComponent(btnDeletePun)))
+                            .addComponent(mNewPunButton)
+                            .addComponent(mDeletePunButton)))
                     .addGroup(pnlPunLayout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(mTitleContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mTitleLabel)
+                            .addComponent(mTitleField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(mDateContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mDateLabel)
+                            .addComponent(mDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(mUserContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mUserLabel)
+                            .addComponent(mUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
 
         jTabbedPane.addTab("Skämt", pnlPun);
 
+        mSQLContentWindow.setEditable(false);
         mSQLContentWindow.setColumns(20);
         mSQLContentWindow.setRows(5);
         jScrollPane5.setViewportView(mSQLContentWindow);
@@ -427,12 +430,13 @@ public class AdminWindow extends javax.swing.JFrame
             }
         });
 
-        jLabel5.setText("<-- Obs! Endast för avancerade användare ;)");
+        mSQLWarningLabel.setText("<-- Obs! Endast för avancerade användare ;)");
 
-        jLabel6.setText("Server");
+        mServerLabel.setText("Server");
 
-        jLabel7.setText("Databas");
+        mDatabaseLabel.setText("Databas");
 
+        mServerField.setEditable(false);
         mServerField.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -440,6 +444,8 @@ public class AdminWindow extends javax.swing.JFrame
                 mServerFieldActionPerformed(evt);
             }
         });
+
+        mDatabaseField.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -451,17 +457,17 @@ public class AdminWindow extends javax.swing.JFrame
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(mSQLQueryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
+                        .addComponent(mSQLWarningLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(mDatabaseLabel)
                                 .addGap(2, 2, 2)
                                 .addComponent(mDatabaseField, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(mServerLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(mServerField)))))
                 .addContainerGap())
@@ -474,16 +480,16 @@ public class AdminWindow extends javax.swing.JFrame
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
+                            .addComponent(mServerLabel)
                             .addComponent(mServerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
+                            .addComponent(mDatabaseLabel)
                             .addComponent(mDatabaseField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mSQLQueryButton)
-                    .addComponent(jLabel5))
+                    .addComponent(mSQLWarningLabel))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -505,20 +511,21 @@ public class AdminWindow extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNewPunActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNewPunActionPerformed
-    {//GEN-HEADEREND:event_btnNewPunActionPerformed
+    private void mNewPunButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mNewPunButtonActionPerformed
+    {//GEN-HEADEREND:event_mNewPunButtonActionPerformed
+        CreatePunWindow pwnd = new CreatePunWindow(mParent);
+        pwnd.setVisible(true);
+    }//GEN-LAST:event_mNewPunButtonActionPerformed
 
-    }//GEN-LAST:event_btnNewPunActionPerformed
-
-    private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNewUserActionPerformed
-    {//GEN-HEADEREND:event_btnNewUserActionPerformed
+    private void mNewUserButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mNewUserButtonActionPerformed
+    {//GEN-HEADEREND:event_mNewUserButtonActionPerformed
         RegistrationWindow r = new RegistrationWindow(true);
         r.setVisible(true);
-    }//GEN-LAST:event_btnNewUserActionPerformed
+    }//GEN-LAST:event_mNewUserButtonActionPerformed
 
-    private void btnRemoveUserActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnRemoveUserActionPerformed
-    {//GEN-HEADEREND:event_btnRemoveUserActionPerformed
-        String s = jListUsers.getSelectedValue().toString();
+    private void mRemoveUserButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mRemoveUserButtonActionPerformed
+    {//GEN-HEADEREND:event_mRemoveUserButtonActionPerformed
+        String s = mUserWindow.getSelectedValue().toString();
 
         boolean deleted = false;
         for (int i = 0; i < mUserList.size(); i++)
@@ -541,28 +548,28 @@ public class AdminWindow extends javax.swing.JFrame
 
         InitializeUsers();
         
-        jListUsers.setSelectedIndex(0);
+        mUserWindow.setSelectedIndex(0);
 
-    }//GEN-LAST:event_btnRemoveUserActionPerformed
+    }//GEN-LAST:event_mRemoveUserButtonActionPerformed
 
-    private void mUserContentActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mUserContentActionPerformed
-    {//GEN-HEADEREND:event_mUserContentActionPerformed
+    private void mUserFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mUserFieldActionPerformed
+    {//GEN-HEADEREND:event_mUserFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mUserContentActionPerformed
+    }//GEN-LAST:event_mUserFieldActionPerformed
 
     private void mPunListWindowValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_mPunListWindowValueChanged
     {//GEN-HEADEREND:event_mPunListWindowValueChanged
         if (mPunListWindow.getSelectedIndex() >= 0)
         {
             mPunContentWindow.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetContent());
-            mTitleContent.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetTitle());
-            mDateContent.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetDate().toString());
-            mUserContent.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetAdder());
+            mTitleField.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetTitle());
+            mDateField.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetDate().toString());
+            mUserField.setText(mPunListShown.get(mPunListWindow.getSelectedIndex()).GetAdder());
         }
     }//GEN-LAST:event_mPunListWindowValueChanged
 
-    private void btnDeletePunActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeletePunActionPerformed
-    {//GEN-HEADEREND:event_btnDeletePunActionPerformed
+    private void mDeletePunButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mDeletePunButtonActionPerformed
+    {//GEN-HEADEREND:event_mDeletePunButtonActionPerformed
         String s = mPunListWindow.getSelectedValue().toString();
 
         boolean deleted = false;
@@ -603,7 +610,7 @@ public class AdminWindow extends javax.swing.JFrame
         {
             System.out.println("Pun not found and could not be deleted");
         }
-    }//GEN-LAST:event_btnDeletePunActionPerformed
+    }//GEN-LAST:event_mDeletePunButtonActionPerformed
 
     private void mSQLQueryButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mSQLQueryButtonActionPerformed
     {//GEN-HEADEREND:event_mSQLQueryButtonActionPerformed
@@ -721,20 +728,8 @@ public class AdminWindow extends javax.swing.JFrame
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDeletePun;
-    private javax.swing.JButton btnNewCategory;
-    private javax.swing.JButton btnNewPun;
-    private javax.swing.JButton btnNewUser;
-    private javax.swing.JButton btnRemoveUser;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelCategory;
-    private javax.swing.JList jListUsers;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -745,17 +740,29 @@ public class AdminWindow extends javax.swing.JFrame
     private javax.swing.JTextField jTextField3;
     private javax.swing.JComboBox mCategoryComboBox;
     private javax.swing.JTextField mDatabaseField;
-    private javax.swing.JTextField mDateContent;
+    private javax.swing.JLabel mDatabaseLabel;
+    private javax.swing.JTextField mDateField;
+    private javax.swing.JLabel mDateLabel;
+    private javax.swing.JButton mDeletePunButton;
+    private javax.swing.JButton mNewCategoryButton;
+    private javax.swing.JButton mNewPunButton;
+    private javax.swing.JButton mNewUserButton;
     private javax.swing.JTextArea mPunContentWindow;
     private javax.swing.JList mPunListWindow;
+    private javax.swing.JButton mRemoveUserButton;
     private javax.swing.JTextArea mSQLContentWindow;
     private javax.swing.JButton mSQLQueryButton;
+    private javax.swing.JLabel mSQLWarningLabel;
     private javax.swing.JTextField mServerField;
-    private javax.swing.JTextField mTitleContent;
-    private javax.swing.JTextField mUserContent;
+    private javax.swing.JLabel mServerLabel;
+    private javax.swing.JTextField mTitleField;
+    private javax.swing.JLabel mTitleLabel;
+    private javax.swing.JTextField mUserField;
+    private javax.swing.JTextArea mUserInfoContent;
+    private javax.swing.JLabel mUserLabel;
+    private javax.swing.JList mUserWindow;
     private javax.swing.JPanel pnlPun;
     private javax.swing.JPanel pnlUser;
-    private javax.swing.JTextArea txtUserInfo;
     // End of variables declaration//GEN-END:variables
 
     private void InitializeSQLInfo()
