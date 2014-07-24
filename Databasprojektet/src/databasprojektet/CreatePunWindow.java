@@ -112,7 +112,6 @@ public class CreatePunWindow extends javax.swing.JFrame
         mCategoryLabel.setText("Kategori");
 
         mNewCategoryButton.setText("Ny Kategori");
-        mNewCategoryButton.setEnabled(false);
         mNewCategoryButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -253,7 +252,7 @@ public class CreatePunWindow extends javax.swing.JFrame
 
     private void mNewCategoryButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mNewCategoryButtonActionPerformed
     {//GEN-HEADEREND:event_mNewCategoryButtonActionPerformed
-        // TODO add your handling code here:
+        mParent.AddCategory("Välj en titel");
     }//GEN-LAST:event_mNewCategoryButtonActionPerformed
 
     private void mTitleFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mTitleFieldActionPerformed

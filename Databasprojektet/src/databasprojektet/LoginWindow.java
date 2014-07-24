@@ -26,7 +26,7 @@ import java.sql.SQLException;
 public class LoginWindow extends javax.swing.JFrame
 {
 
-    MainWindow parent;
+    MainWindow mRarent;
 
     /**
      * Creates new form LoginWindow
@@ -35,7 +35,7 @@ public class LoginWindow extends javax.swing.JFrame
      */
     public LoginWindow(MainWindow parent)
     {
-        this.parent = parent;
+        this.mRarent = parent;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -188,7 +188,7 @@ public class LoginWindow extends javax.swing.JFrame
                     String name = rs.getString("UserName");
                     boolean admin = rs.getBoolean("IsAdmin");
                     User u = new User(id, name, passInDatabase, admin);
-                    parent.RegisterUser(u);
+                    mRarent.RegisterUser(u);
 
                     System.out.println("gz! Login success");
                     setVisible(false);
