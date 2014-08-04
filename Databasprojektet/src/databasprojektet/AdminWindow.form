@@ -255,7 +255,6 @@
                                           <Component id="mUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="mUserField" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="101" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>

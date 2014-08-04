@@ -30,6 +30,7 @@ public class Pun {
     
     private String mContent, mAdder, mTitle, mCategory;
     private int mNumOfOffenders, mId, mAdderId;
+    private float mRating;
     private final float mOffensiveThreshold = 0.2f;
     private Date mDateAdded;
     
@@ -91,12 +92,6 @@ public class Pun {
         
         return res;
     }
-    
-    public int GetId()
-    {
-        return mId;
-    }
-    
     public int GetAdderId()
     {
         return mAdderId;
@@ -120,6 +115,16 @@ public class Pun {
     public int GetID()
     {
         return mId;
+    }
+    
+    public float GetRating()
+    {
+        return mRating;
+    }
+    
+    public void SetRating(float rating)
+    {
+        mRating = rating;
     }
     //Bör skickas till databasen också/istället
     public void ThisIsOffensive()

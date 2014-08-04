@@ -768,11 +768,13 @@ public class AdminWindow extends javax.swing.JFrame
         {
             if (mPunList.get(i).GetTitle().equals(s))
             {
-                int id = mPunList.get(i).GetId();
+                int id = mPunList.get(i).GetID();
                 int selectedIndex = mPunListWindow.getSelectedIndex();
 
                 mPunList.remove(i);
                 String removeQuery = "DELETE FROM pun WHERE ID = '" + id + "';";
+                SQLHelper.ExecuteUpdate(removeQuery);
+                removeQuery = "DELETE FROM rating WHERE PunID = '" + id + "';";
                 SQLHelper.ExecuteUpdate(removeQuery);
                 deleted = true;
                 if (mCategoryComboBox.getSelectedItem().toString().equals("Visa alla"))

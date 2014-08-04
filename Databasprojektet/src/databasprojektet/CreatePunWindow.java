@@ -189,12 +189,14 @@ public class CreatePunWindow extends javax.swing.JFrame
     
     private void mOkButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mOkButtonActionPerformed
     {//GEN-HEADEREND:event_mOkButtonActionPerformed
-        int punId = GetValidID();
+        String title = mTitleField.getText();
         String content = mPunContentWindow.getText();
+        if(title != null && !title.isEmpty() && content != null && !content.isEmpty())
+        {
+        int punId = GetValidID();
         String category = (String) mCategoryComboBox.getSelectedItem();
         int adder = mGrandParent.GetActiveUser().GetId();
         Date date = Application.GetCurrentDate();
-        String title = mTitleField.getText();
         
         String newPunQuery = "INSERT INTO pun VALUES (" + punId + 
                 ", '" + content +
@@ -205,9 +207,18 @@ public class CreatePunWindow extends javax.swing.JFrame
                 ", '" + title +
                 "');";
         SQLHelper.ExecuteUpdate(newPunQuery);
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException e)
+        {
+            System.out.println(e);
+        }
         mGrandParent.UpdatePuns();
         mParent.UpdatePuns();
         dispose();
+        }
     }
 
     /**
