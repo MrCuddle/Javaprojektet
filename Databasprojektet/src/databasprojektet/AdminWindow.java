@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -353,8 +354,7 @@ public class AdminWindow extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -395,6 +395,7 @@ public class AdminWindow extends javax.swing.JFrame
         mDatabaseLabel = new javax.swing.JLabel();
         mServerField = new javax.swing.JTextField();
         mDatabaseField = new javax.swing.JTextField();
+        mOutputDbButton = new javax.swing.JButton();
 
         jLabel3.setText("Titel");
 
@@ -405,10 +406,8 @@ public class AdminWindow extends javax.swing.JFrame
         setResizable(false);
 
         mNewUserButton.setText("Lägg Till Användare");
-        mNewUserButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mNewUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mNewUserButtonActionPerformed(evt);
             }
         });
@@ -421,10 +420,8 @@ public class AdminWindow extends javax.swing.JFrame
         jScrollPane2.setViewportView(mUserInfoContent);
 
         mRemoveUserButton.setText("Ta bort användare");
-        mRemoveUserButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mRemoveUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mRemoveUserButtonActionPerformed(evt);
             }
         });
@@ -452,7 +449,7 @@ public class AdminWindow extends javax.swing.JFrame
                 .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mNewUserButton)
                     .addComponent(mRemoveUserButton)))
@@ -461,26 +458,21 @@ public class AdminWindow extends javax.swing.JFrame
         jTabbedPane.addTab("Användare", pnlUser);
 
         mNewPunButton.setText("Lägg Till Skämt");
-        mNewPunButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mNewPunButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mNewPunButtonActionPerformed(evt);
             }
         });
 
         jLabelCategory.setText("Kategori");
 
-        mPunListWindow.setModel(new javax.swing.AbstractListModel()
-        {
+        mPunListWindow.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        mPunListWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener()
-        {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
-            {
+        mPunListWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 mPunListWindowValueChanged(evt);
             }
         });
@@ -489,10 +481,8 @@ public class AdminWindow extends javax.swing.JFrame
         mPunContentWindow.setColumns(20);
         mPunContentWindow.setLineWrap(true);
         mPunContentWindow.setRows(5);
-        mPunContentWindow.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        mPunContentWindow.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 mPunContentWindowKeyTyped(evt);
             }
         });
@@ -506,10 +496,8 @@ public class AdminWindow extends javax.swing.JFrame
 
         mTitleLabel.setText("Titel");
 
-        mTitleField.addKeyListener(new java.awt.event.KeyAdapter()
-        {
-            public void keyTyped(java.awt.event.KeyEvent evt)
-            {
+        mTitleField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
                 mTitleFieldKeyTyped(evt);
             }
         });
@@ -522,19 +510,15 @@ public class AdminWindow extends javax.swing.JFrame
         mDateField.setFocusable(false);
 
         mDeletePunButton.setText("Ta Bort Skämt");
-        mDeletePunButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mDeletePunButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mDeletePunButtonActionPerformed(evt);
             }
         });
 
         mNewCategoryButton.setText("Ny Kategori");
-        mNewCategoryButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mNewCategoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mNewCategoryButtonActionPerformed(evt);
             }
         });
@@ -543,10 +527,8 @@ public class AdminWindow extends javax.swing.JFrame
 
         mUpdatePunButton.setText("Uppdatera");
         mUpdatePunButton.setEnabled(false);
-        mUpdatePunButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mUpdatePunButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mUpdatePunButtonActionPerformed(evt);
             }
         });
@@ -610,7 +592,7 @@ public class AdminWindow extends javax.swing.JFrame
                     .addComponent(mNumberOfPunsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPunLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(pnlPunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlPunLayout.createSequentialGroup()
@@ -646,10 +628,8 @@ public class AdminWindow extends javax.swing.JFrame
         jScrollPane5.setViewportView(mSQLContentWindow);
 
         mSQLQueryButton.setText("Test SQL Command");
-        mSQLQueryButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        mSQLQueryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mSQLQueryButtonActionPerformed(evt);
             }
         });
@@ -664,6 +644,13 @@ public class AdminWindow extends javax.swing.JFrame
 
         mDatabaseField.setEditable(false);
 
+        mOutputDbButton.setText("Skriv databas till fil");
+        mOutputDbButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mOutputDbButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -671,10 +658,6 @@ public class AdminWindow extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(mSQLQueryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mSQLWarningLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -686,7 +669,15 @@ public class AdminWindow extends javax.swing.JFrame
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(mServerLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(mServerField)))))
+                                .addComponent(mServerField))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(mSQLQueryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mSQLWarningLabel))
+                            .addComponent(mOutputDbButton))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -707,7 +698,9 @@ public class AdminWindow extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mSQLQueryButton)
                     .addComponent(mSQLWarningLabel))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mOutputDbButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("SQL", jPanel1);
@@ -902,6 +895,80 @@ public class AdminWindow extends javax.swing.JFrame
         mUpdatePunButton.setEnabled(true);
     }//GEN-LAST:event_mTitleFieldKeyTyped
 
+    private void mOutputDbButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOutputDbButtonActionPerformed
+        ExportDatabaseToFile();
+    }//GEN-LAST:event_mOutputDbButtonActionPerformed
+
+    private void ExportDatabaseToFile()
+    {
+        try
+        {
+            File file = new File("sql.txt");
+            if(!file.exists())
+            {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            String content = new String();
+            try 
+            {
+                ResultSet rs = SQLHelper.GetResultSetFromQuery("show create table category");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("show create table users");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("show create table pun");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("show create table rating");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                
+                rs = SQLHelper.GetResultSetFromQuery("select * from category");
+                while(rs.next())
+                {
+                    bw.write("insert into category VALUES('" + rs.getString("Name") + "'," + rs.getInt("Offensive") + ");\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("select * from users");
+                while(rs.next())
+                {
+                    bw.write("insert into users VALUES(" + rs.getInt("ID") + ",'" + rs.getString("UserName") +
+                            "','" + rs.getString("Password") + "'," + rs.getInt("IsAdmin") + ");\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("select * from pun");
+                while(rs.next())
+                {
+                    bw.write("insert into pun VALUES(" + rs.getInt("ID") + ",'" + rs.getString("Content") + 
+                            "','" + rs.getString("Category") + "'," + rs.getInt("Adder") + ",'" + rs.getDate("Date")
+                            + "'," + rs.getInt("Offensive") + ",'" + rs.getString("Title") + "');\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("select * from rating");
+                while(rs.next())
+                {
+                    bw.write("insert into rating VALUES(" + rs.getInt("UserID") + "," + rs.getInt("PunID") + "," + rs.getInt("Rating") + ");\n");
+                }
+            }
+            catch(SQLException e)
+            {
+                System.out.println(e);
+            }
+            bw.close();
+        }
+        catch(IOException e)
+        {
+            System.out.println(e);
+        }
+    }
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -974,6 +1041,7 @@ public class AdminWindow extends javax.swing.JFrame
     private javax.swing.JButton mNewUserButton;
     private javax.swing.JTextField mNumberOfPunsField;
     private javax.swing.JLabel mNumberOfPunsLabel;
+    private javax.swing.JButton mOutputDbButton;
     private javax.swing.JTextArea mPunContentWindow;
     private javax.swing.JList mPunListWindow;
     private javax.swing.JButton mRemoveUserButton;
