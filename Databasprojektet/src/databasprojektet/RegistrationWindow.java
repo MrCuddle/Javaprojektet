@@ -21,7 +21,8 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 /**
- *
+ * Form for registering new users.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class RegistrationWindow extends javax.swing.JFrame

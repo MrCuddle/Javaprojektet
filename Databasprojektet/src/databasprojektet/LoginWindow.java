@@ -20,7 +20,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * Lets users log in and out to the system.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class LoginWindow extends javax.swing.JFrame

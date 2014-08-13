@@ -23,7 +23,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
- *
+ * The main application class.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class Application

@@ -18,7 +18,8 @@
 package databasprojektet;
 
 /**
- *
+ * Main-class.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class Main {

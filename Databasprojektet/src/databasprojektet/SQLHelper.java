@@ -22,7 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Helper-class for communication with the SQL-Database.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class SQLHelper
@@ -37,7 +38,7 @@ public class SQLHelper
 
 
     /**
-     * @Returns the IP address of the database host.
+     * @return the IP address of the database host.
      */
     public static String GetHostIP()
     {
@@ -158,7 +159,7 @@ public class SQLHelper
 
     /**
      * Preforms an SQL query and returns the result set.
-     * @param SQL command to be executed.
+     * @param command SQL command to be executed.
      * @return the result set received from the query above.
      */
     public static ResultSet GetResultSetFromQuery(String command)
@@ -181,7 +182,7 @@ public class SQLHelper
 
     /**
      * Updates an existing table. 
-     * @param The SQL query with which to update the table with.
+     * @param command The SQL query with which to update the table with.
      */
     public static void ExecuteUpdate(String command)
     {

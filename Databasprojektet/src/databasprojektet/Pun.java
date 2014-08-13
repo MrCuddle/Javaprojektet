@@ -23,7 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Represents a pun in the database.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class Pun

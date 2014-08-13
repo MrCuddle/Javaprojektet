@@ -24,7 +24,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Allows users to add new puns to the database.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class CreatePunWindow extends javax.swing.JFrame

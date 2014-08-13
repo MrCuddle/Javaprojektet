@@ -17,7 +17,8 @@
 package databasprojektet;
 
 /**
- *
+ * Represents a user in the database.
+ * 
  * @author Simon Dahlberg and Jesper Sahlin
  */
 class User
