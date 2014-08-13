@@ -114,7 +114,7 @@ public class MainWindow extends javax.swing.JFrame
         mRating = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hej");
+        setTitle("Skämt für alles!");
         setName("MainWindow"); // NOI18N
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
