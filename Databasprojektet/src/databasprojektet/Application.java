@@ -17,14 +17,12 @@
 package databasprojektet;
 
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * The main application class.
- * 
+ *
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class Application
@@ -43,8 +41,8 @@ public class Application
     }
 
     /**
-    * Sets the graphical theme for all forms.
-    */
+     * Sets the graphical theme for all forms.
+     */
     private void Initialize()
     {
         try

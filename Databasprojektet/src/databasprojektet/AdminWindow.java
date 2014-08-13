@@ -42,7 +42,7 @@ public class AdminWindow extends javax.swing.JFrame
 
     private ArrayList<Pun> mPunList;
     private final ArrayList<Pun> mPunListShown = new ArrayList<>();
-    private Pun selectedPun;
+    private Pun mSelectedPun;
     private ArrayList<User> mUserList;
     private final MainWindow mParent;
 
@@ -915,12 +915,12 @@ public class AdminWindow extends javax.swing.JFrame
     {//GEN-HEADEREND:event_mPunListWindowValueChanged
         if (mPunListWindow.getSelectedIndex() >= 0)
         {
-            selectedPun = mPunListShown.get(mPunListWindow.getSelectedIndex());
+            mSelectedPun = mPunListShown.get(mPunListWindow.getSelectedIndex());
 
-            mPunContentWindow.setText(selectedPun.GetContent());
-            mTitleField.setText(selectedPun.GetTitle());
-            mDateField.setText(selectedPun.GetDate().toString());
-            mUserField.setText(selectedPun.GetAdder());
+            mPunContentWindow.setText(mSelectedPun.GetContent());
+            mTitleField.setText(mSelectedPun.GetTitle());
+            mDateField.setText(mSelectedPun.GetDate().toString());
+            mUserField.setText(mSelectedPun.GetAdder());
 
             mUpdatePunButton.setEnabled(false);
 
@@ -1024,7 +1024,7 @@ public class AdminWindow extends javax.swing.JFrame
     {//GEN-HEADEREND:event_mUpdatePunButtonActionPerformed
         String newContent = mPunContentWindow.getText();
         String newTitle = mTitleField.getText();
-        int punId = selectedPun.GetID();
+        int punId = mSelectedPun.GetID();
         String query = "UPDATE pun SET Content = '" + newContent + "', Title = '" + newTitle + "' WHERE ID = " + punId;
 
         System.out.println(query);

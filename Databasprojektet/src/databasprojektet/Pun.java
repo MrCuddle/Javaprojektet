@@ -32,9 +32,7 @@ public class Pun
 
     private final String mContent, mTitle, mCategory;
     private final int mId, mAdderId;
-    private final float mOffensiveThreshold = 0.2f;
     private final Date mDateAdded;
-    private int mNumOfOffenders = 0;
     private float mRating;
 
     /**
