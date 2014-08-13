@@ -31,7 +31,7 @@ public class LoginWindow extends javax.swing.JFrame
     /**
      * Creates new form LoginWindow
      *
-     * @param parent
+     * @param parent the MainWindow which creates this form.
      */
     public LoginWindow(MainWindow parent)
     {
@@ -217,7 +217,6 @@ public class LoginWindow extends javax.swing.JFrame
     private void mCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mCancelButtonActionPerformed
         setVisible(false);
     }//GEN-LAST:event_mCancelButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbLoginResult;

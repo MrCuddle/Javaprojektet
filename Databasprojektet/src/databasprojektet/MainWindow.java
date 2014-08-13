@@ -24,7 +24,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 /**
- *
+ * Main Window for the application. It shows a list of puns and categories and
+ * a button that lets the user log in to the system.
  * @author Simon Dahlberg and Jesper Sahlin
  */
 public class MainWindow extends javax.swing.JFrame
@@ -67,6 +68,9 @@ public class MainWindow extends javax.swing.JFrame
         mCategoryComboBox.addActionListener(categoryCbActionListener);
     }
 
+    /**
+    * Retrieves all categories from the database and populates the listbox.
+    */
     private void InitializeCategories()
     {
         mCategoryComboBox.addItem("Visa alla");
@@ -255,6 +259,9 @@ public class MainWindow extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Retrieves all puns from the database and stores them in mPunList.
+    */
     private void InitializePuns()
     {
         ResultSet punsFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from pun order by Title");
@@ -298,6 +305,10 @@ public class MainWindow extends javax.swing.JFrame
         ChangeCategoryShown();
     }
 
+    /**
+    * Changes the shown category to "Visa alla" which a category that shows puns
+    * from all categories.
+    */
     private void ChangeCategoryShown()
     {
         mPunListShown.clear();
@@ -311,26 +322,10 @@ public class MainWindow extends javax.swing.JFrame
     }
 
     /**
-     * Updates the list of puns in the mainWindow Should be called whenever a
-     * pun is added or deleted
-     */
-    public void UpdatePuns()
-    {
-        mPunList.clear();
-        InitializePuns();
-        mPunContentWindow.setText("");
-    }
-
-    private void InitializeSlider()
-    {
-        mRateSlider.setMinimum(1);
-        mRateSlider.setMaximum(5);
-        mRateSlider.setValue(3);
-        mRateSlider.setMinorTickSpacing(1);
-        mRateSlider.setPaintTicks(true);
-        mRateSlider.setPaintLabels(true);
-    }
-
+    * Changes which category is currently shown and lists the puns belonging to
+    * the selected category.
+    * @param category the category to show.
+    */
     private void ChangeCategoryShown(String category)
     {
         mPunListShown.clear();
@@ -349,6 +344,32 @@ public class MainWindow extends javax.swing.JFrame
         }
         mPunListWindow.setModel(listModel);
     }
+    
+    /**
+     * Updates the list of puns in the mainWindow Should be called whenever a
+     * pun is added or deleted.
+     */
+    public void UpdatePuns()
+    {
+        mPunList.clear();
+        InitializePuns();
+        mPunContentWindow.setText("");
+    }
+
+    /**
+    * Initializes the slider mRateSlider.
+    */
+    private void InitializeSlider()
+    {
+        mRateSlider.setMinimum(1);
+        mRateSlider.setMaximum(5);
+        mRateSlider.setValue(3);
+        mRateSlider.setMinorTickSpacing(1);
+        mRateSlider.setPaintTicks(true);
+        mRateSlider.setPaintLabels(true);
+    }
+
+    
     private void mExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExitButtonActionPerformed
         System.out.println("Stopped");
         System.exit(0);
@@ -408,8 +429,9 @@ public class MainWindow extends javax.swing.JFrame
     }//GEN-LAST:event_mCategoryComboBoxActionPerformed
 
     /**
-     *
-     * @param newUsername
+     * Updates the current users username, which is used to show information to
+     * the user.
+     * @param newUsername the new username.
      */
     public void UpdateUsername(String newUsername)
     {
@@ -418,8 +440,9 @@ public class MainWindow extends javax.swing.JFrame
     }
 
     /**
-     *
-     * @param user
+     * Sets a new user as the active user and grants it the corresponding 
+     * privileges (Admin or normal user).
+     * @param user the new user.
      */
     public void RegisterActiveUser(User user)
     {
@@ -439,7 +462,8 @@ public class MainWindow extends javax.swing.JFrame
     }
 
     /**
-     *
+     * Logs out the active user, if it is logged in.
+     * Resets information related to the user and revokes all user privileges.
      */
     public void UnregisterActiveUser()
     {
@@ -458,8 +482,9 @@ public class MainWindow extends javax.swing.JFrame
     }
 
     /**
-     *
-     * @return
+     * @return List of all puns in the mPunList, which is all the puns currently
+     * known to the application. If the database has been changed outside the
+     * application while it is running, this list is not up to date.
      */
     public ArrayList<Pun> GetPunList()
     {
@@ -468,7 +493,7 @@ public class MainWindow extends javax.swing.JFrame
 
     /**
      *
-     * @return
+     * @return the active user.
      */
     public User GetActiveUser()
     {
