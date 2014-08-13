@@ -26,6 +26,11 @@ public class Main {
     
     //Kommentar
     
+    /**
+     *
+     * @param args
+     */
+        
     public static void main(String[] args) {
         Application app = new Application();
         app.Run();

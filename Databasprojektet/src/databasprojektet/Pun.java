@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Simpa
+ * @author Simon Dahlberg and Jesper Sahlin
  */
 public class Pun
 {
@@ -36,6 +36,15 @@ public class Pun
     private int mNumOfOffenders = 0;
     private float mRating;
 
+    /**
+     *
+     * @param id
+     * @param title
+     * @param content
+     * @param category
+     * @param adder
+     * @param dateAdded
+     */
     public Pun(int id, String title, String content, String category, int adder, Date dateAdded)
     {
         mId = id;
@@ -46,11 +55,19 @@ public class Pun
         mDateAdded = dateAdded;
     }
 
+    /**
+     *
+     * @return
+     */
     public String GetContent()
     {
         return mContent;
     }
 
+    /**
+     *
+     * @return
+     */
     public String GetAdder()
     {
         String res = null;
@@ -71,49 +88,88 @@ public class Pun
         return res;
     }
 
+    /**
+     *
+     * @return
+     */
     public int GetAdderId()
     {
         return mAdderId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date GetDate()
     {
         return mDateAdded;
     }
 
+    /**
+     *
+     * @return
+     */
     public String GetTitle()
     {
         return mTitle;
     }
 
+    /**
+     *
+     * @return
+     */
     public String GetCategory()
     {
         return mCategory;
     }
 
+    /**
+     *
+     * @return
+     */
     public int GetID()
     {
         return mId;
     }
 
+    /**
+     *
+     * @return
+     */
     public float GetRating()
     {
         return mRating;
     }
 
+    /**
+     *
+     * @param rating
+     */
     public void SetRating(float rating)
     {
         mRating = rating;
     }
 
     //Bör skickas till databasen också/istället
-    public void ThisIsOffensive()
+
+    /**
+     *
+     */
+        public void ThisIsOffensive()
     {
         mNumOfOffenders++;
     }
 
     /*Om denna bool är true så borde browsern endast visa
      den om man har markerat att man är man nog för't!*/
+
+    /**
+     *
+     * @param numberOfUsers
+     * @return
+     */
+    
     public boolean IsItOffensive(int numberOfUsers)
     {
         return mNumOfOffenders / numberOfUsers > mOffensiveThreshold;

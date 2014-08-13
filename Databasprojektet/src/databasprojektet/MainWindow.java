@@ -407,12 +407,20 @@ public class MainWindow extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_mCategoryComboBoxActionPerformed
 
+    /**
+     *
+     * @param newUsername
+     */
     public void UpdateUsername(String newUsername)
     {
         mUserName = newUsername;
         mMessageLabel.setText(mWelcomeMsg + mUserName + "!");
     }
 
+    /**
+     *
+     * @param user
+     */
     public void RegisterActiveUser(User user)
     {
         mActiveUser = user;
@@ -430,6 +438,9 @@ public class MainWindow extends javax.swing.JFrame
         mProfileButton.setText("Logga ut");
     }
 
+    /**
+     *
+     */
     public void UnregisterActiveUser()
     {
         mActiveUser = null;
@@ -446,11 +457,19 @@ public class MainWindow extends javax.swing.JFrame
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Pun> GetPunList()
     {
         return mPunList;
     }
 
+    /**
+     *
+     * @return
+     */
     public User GetActiveUser()
     {
         return mActiveUser;

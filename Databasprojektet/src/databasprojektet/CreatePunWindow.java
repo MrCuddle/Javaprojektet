@@ -37,6 +37,7 @@ public class CreatePunWindow extends javax.swing.JFrame
      * Creates new form NewPunWindow
      *
      * @param grandParent
+     * @param parent
      */
     public CreatePunWindow(MainWindow grandParent, AdminWindow parent)
     {

@@ -32,6 +32,9 @@ public class Application
     private final String mLookAndFeelPath = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
     private MainWindow mMainWindow;
 
+    /**
+     *
+     */
     public Application()
     {
         Initialize();
@@ -50,6 +53,9 @@ public class Application
         }
     }
 
+    /**
+     *
+     */
     public void Run()
     {
         System.out.println("Started");
@@ -85,6 +91,10 @@ public class Application
         }.start();
     }
 
+    /**
+     *
+     * @return
+     */
     public static Date GetCurrentDate()
     {
         return new Date(System.currentTimeMillis());

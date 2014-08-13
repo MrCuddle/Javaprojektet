@@ -45,7 +45,7 @@ public class AdminWindow extends javax.swing.JFrame
     /**
      * Creates new form AdminPanel
      *
-     * @param parent
+     * @param parent used to send data back to the main window.
      */
     public AdminWindow(MainWindow parent)
     {
@@ -97,6 +97,10 @@ public class AdminWindow extends javax.swing.JFrame
 
     }
 
+    /**
+     * Initializes the list of categories as well as the list of puns shown in
+     * the pun list. Populates the combobox mCategorycomboBox.
+     */
     private void InitializePuns()
     {
         mCategoryComboBox.addItem("Visa alla");
@@ -119,6 +123,10 @@ public class AdminWindow extends javax.swing.JFrame
         mNumberOfPunsField.setText(Integer.toString(GetTotalPunCount()));
     }
 
+    /**
+     * Updates the list of categories. Should be used when a new category is
+     * added while this window is still active.
+     */
     private void UpdateCategoryList()
     {
 
@@ -136,6 +144,11 @@ public class AdminWindow extends javax.swing.JFrame
         }
     }
 
+    /**
+     * Initializes the list of users by retrieving them from the database and
+     * then populates the listbox mUserList.
+     *
+     */
     private void InitializeUsers()
     {
         ResultSet usersFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from users order by UserName");
@@ -160,6 +173,10 @@ public class AdminWindow extends javax.swing.JFrame
         mUserWindow.setModel(listModel);
     }
 
+    /**
+     * Retrieves information about the SQL-server and the database. Lists all
+     * the tables in the database.
+     */
     private void InitializeSQLInfo()
     {
         mServerField.setText(SQLHelper.GetHostIP());
@@ -172,6 +189,10 @@ public class AdminWindow extends javax.swing.JFrame
         }
     }
 
+    /**
+     * Shows puns from the selected Category in mCategoryComboBox in
+     * mPunListWindow.
+     */
     private void ChangeCategoryShown()
     {
         mPunListShown.clear();
@@ -184,6 +205,11 @@ public class AdminWindow extends javax.swing.JFrame
         mPunListWindow.setModel(listModel);
     }
 
+    /**
+     * * Shows puns from the named category.
+     *
+     * @param category name of the category to be shown
+     */
     private void ChangeCategoryShown(String category)
     {
         mPunListShown.clear();
@@ -203,6 +229,11 @@ public class AdminWindow extends javax.swing.JFrame
         mPunListWindow.setModel(listModel);
     }
 
+    /**
+     * Updates the list of puns in this class and in the parent class. Should be
+     * used when a pun is modified, removed or deleted, while this window is
+     * still active.
+     */
     public void UpdatePuns()
     {
         mParent.UpdatePuns();
@@ -219,6 +250,14 @@ public class AdminWindow extends javax.swing.JFrame
 
     }
 
+    /**
+     * Creates a window with the ShowNewCategoryDialog method, with the provided
+     * message. The window prompts the user to name a new category, which is
+     * then added to the database.
+     *
+     * @param userMessage message in the window, a message to the user.
+     *
+     */
     public void AddCategory(String userMessage)
     {
         String newCategory = ShowNewCategoryDialog(userMessage);
@@ -272,6 +311,15 @@ public class AdminWindow extends javax.swing.JFrame
 
     }
 
+    /**
+     * Shows a window which allows the user to fill in a category name. If the
+     * string is empty the method calls itself until the user has provided a
+     * category name or the operation is canceled.
+     *
+     * @param message message in the window, a message to the user.
+     * @return user defined category name.
+     *
+     */
     private String ShowNewCategoryDialog(String message)
     {
         String res;
@@ -289,6 +337,11 @@ public class AdminWindow extends javax.swing.JFrame
         return res;
     }
 
+    /**
+     * Returns the number of puns in a specified category.
+     *
+     * @param category the category to be counted.
+     */
     private int GetCategoryPunCount(String category)
     {
         ResultSet rs = SQLHelper.GetResultSetFromQuery("select count(Category) AS NrConatining From pun where category='" + category + "'");
@@ -306,6 +359,9 @@ public class AdminWindow extends javax.swing.JFrame
 
     }
 
+    /**
+     * Return the total number of puns in the database.
+     */
     private int GetTotalPunCount()
     {
         ResultSet rs = SQLHelper.GetResultSetFromQuery("SELECT COUNT(*)FROM pun");
@@ -323,11 +379,17 @@ public class AdminWindow extends javax.swing.JFrame
 
     }
 
+    /**
+     * Set the text in the text field mSQLContentWindow.
+     */
     private void SetStatusWindowText(String text)
     {
         mSQLContentWindow.setText(text);
     }
 
+    /**
+     * Appends the text in the text field mSQLContentWindow.
+     */
     private void AppendStatusWindow(String text)
     {
         if (!mSQLContentWindow.getText().equals(""))
@@ -341,6 +403,9 @@ public class AdminWindow extends javax.swing.JFrame
 
     }
 
+    /**
+     * Clears the text field mSQLContentWindow.
+     */
     private void EmptyStatusWindow()
     {
         mSQLContentWindow.setText("");
@@ -779,9 +844,9 @@ public class AdminWindow extends javax.swing.JFrame
             mTitleField.setText(selectedPun.GetTitle());
             mDateField.setText(selectedPun.GetDate().toString());
             mUserField.setText(selectedPun.GetAdder());
-            
+
             mUpdatePunButton.setEnabled(false);
-            
+
         }
     }//GEN-LAST:event_mPunListWindowValueChanged
 
@@ -884,11 +949,11 @@ public class AdminWindow extends javax.swing.JFrame
         String newTitle = mTitleField.getText();
         int punId = selectedPun.GetID();
         String query = "UPDATE pun SET Content = '" + newContent + "', Title = '" + newTitle + "' WHERE ID = " + punId;
-        
+
         System.out.println(query);
-        
+
         SQLHelper.ExecuteUpdate(query);
-        
+
         UpdatePuns();
     }//GEN-LAST:event_mUpdatePunButtonActionPerformed
 
@@ -901,55 +966,6 @@ public class AdminWindow extends javax.swing.JFrame
     {//GEN-HEADEREND:event_mTitleFieldKeyTyped
         mUpdatePunButton.setEnabled(true);
     }//GEN-LAST:event_mTitleFieldKeyTyped
-
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[])
-//    {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try
-//        {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-//            {
-//                if ("Nimbus".equals(info.getName()))
-//                {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        }
-//        catch (ClassNotFoundException ex)
-//        {
-//            java.util.logging.Logger.getLogger(AdminWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (InstantiationException ex)
-//        {
-//            java.util.logging.Logger.getLogger(AdminWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (IllegalAccessException ex)
-//        {
-//            java.util.logging.Logger.getLogger(AdminWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (javax.swing.UnsupportedLookAndFeelException ex)
-//        {
-//            java.util.logging.Logger.getLogger(AdminWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable()
-//        {
-//            public void run()
-//            {
-//                new AdminWindow().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;

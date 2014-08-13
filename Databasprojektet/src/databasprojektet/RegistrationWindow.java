@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Simpa
+ * Copyright (C) 2014 Simon Dahlberg and Jesper Sahlin
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 /**
  *
- * @author Simpa
+ * @author Simon Dahlberg and Jesper Sahlin
  */
 public class RegistrationWindow extends javax.swing.JFrame
 {

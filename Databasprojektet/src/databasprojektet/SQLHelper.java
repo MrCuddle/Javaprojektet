@@ -35,6 +35,10 @@ public class SQLHelper
     private static final String mConnectionFormat = "jdbc:mysql://" + mHostIp + ":" + mHostPort + "/" + mUserName;
     private static final String mSqlHelperPrefix = "SQLHelper: ";
 
+    /**
+     *
+     * @return
+     */
     public static String GetHostURL()
     {
         try
@@ -48,11 +52,19 @@ public class SQLHelper
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String GetHostIP()
     {
         return mHostIp;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String GetHostName()
     {
         try
@@ -66,6 +78,10 @@ public class SQLHelper
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<String> GetTableNames()
     {
         ArrayList<String> res = new ArrayList<>();
@@ -85,6 +101,10 @@ public class SQLHelper
         return res;
     }
 
+    /**
+     *
+     * @return
+     */
     public static boolean Connect()
     {
         try
@@ -111,6 +131,10 @@ public class SQLHelper
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public static boolean Disconnect()
     {
         if (mConnection != null)
@@ -131,7 +155,12 @@ public class SQLHelper
 
     //returnerar huruvida con finns och con.close() INTE blivit kallad
     //observera att anslutningen fortfarande kan ha avbrutits på annat sätt
-    public static boolean IsConnected()
+
+    /**
+     *
+     * @return
+     */
+        public static boolean IsConnected()
     {
         if (mConnection != null)
         {
@@ -148,6 +177,11 @@ public class SQLHelper
 
     }
 
+    /**
+     *
+     * @param command
+     * @return
+     */
     public static ResultSet GetResultSetFromQuery(String command)
     {
         if (mStatement != null)
@@ -166,6 +200,10 @@ public class SQLHelper
         return null;
     }
 
+    /**
+     *
+     * @param command
+     */
     public static void ExecuteUpdate(String command)
     {
         try
@@ -178,6 +216,10 @@ public class SQLHelper
         }
     }
 
+    /**
+     *
+     * @param command
+     */
     public static void ExecuteQuery(String command)
     {
         try
@@ -190,11 +232,20 @@ public class SQLHelper
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static String GetStatus()
     {
         return mSqlHelperPrefix + "Connected:" + IsConnected() + " HostIP:" + mHostIp + " Port:" + mHostPort;
     }
 
+    /**
+     *
+     * @param rs
+     * @return
+     */
     public static int GetRowCount(ResultSet rs)
     {
         int res = 0;
@@ -212,6 +263,11 @@ public class SQLHelper
         return res;
     }
 
+    /**
+     *
+     * @param rs
+     * @return
+     */
     public static int GetColumnCount(ResultSet rs)
     {
         int res = 0;
@@ -227,6 +283,10 @@ public class SQLHelper
         return res;
     }
 
+    /**
+     *
+     * @param rs
+     */
     public static void PrintResultSet(ResultSet rs)
     {
         if (rs != null)
