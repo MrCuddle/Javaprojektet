@@ -83,7 +83,11 @@ public class AdminWindow extends javax.swing.JFrame
             public void actionPerformed(ActionEvent e)
             {
                 String s = (String) mCategoryComboBox.getSelectedItem();
-                if (s.equals("Visa alla"))
+                if(s == null)
+                {
+                    return;
+                }
+                else if (s.equals("Visa alla"))
                 {
                     ChangeCategoryShown();
                     mNumberOfPunsField.setText(Integer.toString(GetTotalPunCount()));
@@ -106,7 +110,8 @@ public class AdminWindow extends javax.swing.JFrame
      * the pun list. Populates the combobox mCategorycomboBox.
      */
     private void InitializePuns()
-    {
+    {      
+        mCategoryComboBox.removeAllItems();
         mCategoryComboBox.addItem("Visa alla");
         ResultSet categoriesFromDb = SQLHelper.GetResultSetFromQuery("SELECT Name from category");
         try
@@ -241,8 +246,9 @@ public class AdminWindow extends javax.swing.JFrame
     public void UpdatePuns()
     {
         mParent.UpdatePuns();
-        InitializePuns();
         String s = (String) mCategoryComboBox.getSelectedItem();
+        InitializePuns();
+        
         if (s.equals("Visa alla"))
         {
             ChangeCategoryShown();
