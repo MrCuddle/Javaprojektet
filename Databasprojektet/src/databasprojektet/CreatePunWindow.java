@@ -30,14 +30,14 @@ import java.util.logging.Logger;
 public class CreatePunWindow extends javax.swing.JFrame
 {
 
-    MainWindow mGrandParent;
-    AdminWindow mParent;
+    private final MainWindow mGrandParent;
+    private final AdminWindow mParent;
 
     /**
      * Creates new form NewPunWindow
      *
-     * @param grandParent
-     * @param parent
+     * @param grandParent the main window form.
+     * @param parent the admin window which creates this form.
      */
     public CreatePunWindow(MainWindow grandParent, AdminWindow parent)
     {
@@ -48,6 +48,9 @@ public class CreatePunWindow extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }
 
+    /**
+    * Get all categories from the database and show them in the combobox.
+    */
     private void InitializeCategories()
     {
         ResultSet categoriesFromDb = SQLHelper.GetResultSetFromQuery("SELECT Name from category");
@@ -217,7 +220,9 @@ public class CreatePunWindow extends javax.swing.JFrame
     }
 
     /**
-     * Finds an valid, non-existing ID in the "Pun"-table
+     * Finds an valid, non-existing ID in the "Pun"-table.
+     * 
+     * @return valid id.
      */
     private int GetValidID()
     {

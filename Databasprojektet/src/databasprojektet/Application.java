@@ -33,7 +33,7 @@ public class Application
     private MainWindow mMainWindow;
 
     /**
-     *
+     * This is the main application.
      */
     public Application()
     {
@@ -41,6 +41,9 @@ public class Application
 
     }
 
+    /**
+    * Sets the graphical theme for all forms.
+    */
     private void Initialize()
     {
         try
@@ -54,7 +57,7 @@ public class Application
     }
 
     /**
-     *
+     * Starts the application and connects to the database.
      */
     public void Run()
     {
@@ -66,34 +69,9 @@ public class Application
 
     }
 
-    private void ConnectToDatabase()
-    {
-        new Thread()
-        {
-            @Override
-            public void run()
-            {
-                SQLHelper.Connect();
-                System.out.println(SQLHelper.GetStatus());
-                try
-                {
-                    ResultSet rs = SQLHelper.GetResultSetFromQuery("Select Content from pun");
-                    while (rs.next())
-                    {
-                        System.out.println(SQLHelper.GetStatus());
-                    }
-                }
-                catch (SQLException e)
-                {
-                    System.out.println(e);
-                }
-            }
-        }.start();
-    }
-
     /**
      *
-     * @return
+     * @return the system date.
      */
     public static Date GetCurrentDate()
     {

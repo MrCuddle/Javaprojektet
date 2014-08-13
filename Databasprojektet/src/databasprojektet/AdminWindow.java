@@ -44,7 +44,11 @@ public class AdminWindow extends javax.swing.JFrame
     private final MainWindow mParent;
 
     /**
-     * Creates new form AdminPanel
+     * Creates new form AdminPanel.
+     * The admin panel lets an logged on admin to control the content of the
+     * database (upload new puns, remove users etc.).
+     * In the "SQL" tab the admin can get information about the database server
+     * and try custom SQL-queries.
      *
      * @param parent used to send data back to the main window.
      */

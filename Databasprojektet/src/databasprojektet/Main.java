@@ -24,8 +24,6 @@ package databasprojektet;
 public class Main {
     Application app;
     
-    //Kommentar
-    
     /**
      *
      * @param args
