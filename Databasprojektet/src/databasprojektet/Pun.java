@@ -57,7 +57,7 @@ public class Pun
 
     /**
      *
-     * @return
+     * @return Returns the content of the Pun object
      */
     public String GetContent()
     {
@@ -65,8 +65,8 @@ public class Pun
     }
 
     /**
-     *
-     * @return
+     * Queries the database for the user name of the adder of a specific pun based on the ID of the adder.
+     * @return Returns the user name of the adder.
      */
     public String GetAdder()
     {
@@ -90,7 +90,7 @@ public class Pun
 
     /**
      *
-     * @return
+     * @return Returns the user name of the adder of the pun.
      */
     public int GetAdderId()
     {
@@ -98,8 +98,7 @@ public class Pun
     }
 
     /**
-     *
-     * @return
+     * @return Returns the date the pun was added to the database.
      */
     public Date GetDate()
     {
@@ -108,7 +107,7 @@ public class Pun
 
     /**
      *
-     * @return
+     * @return Returns the title of the pun.
      */
     public String GetTitle()
     {
@@ -117,16 +116,16 @@ public class Pun
 
     /**
      *
-     * @return
+     * @return Returns the category of the pun.
      */
-    public String GetCategory()
+    public String GetCategory() 
     {
         return mCategory;
     }
 
     /**
      *
-     * @return
+     * @return Returns the ID of the pun.
      */
     public int GetID()
     {
@@ -135,7 +134,7 @@ public class Pun
 
     /**
      *
-     * @return
+     * @return Returns the rating of the pun.
      */
     public float GetRating()
     {
@@ -143,35 +142,11 @@ public class Pun
     }
 
     /**
-     *
-     * @param rating
+     * Sets the rating of the pun 
+     * @param rating The new rating of the pun.
      */
     public void SetRating(float rating)
     {
         mRating = rating;
-    }
-
-    //Bör skickas till databasen också/istället
-
-    /**
-     *
-     */
-        public void ThisIsOffensive()
-    {
-        mNumOfOffenders++;
-    }
-
-    /*Om denna bool är true så borde browsern endast visa
-     den om man har markerat att man är man nog för't!*/
-
-    /**
-     *
-     * @param numberOfUsers
-     * @return
-     */
-    
-    public boolean IsItOffensive(int numberOfUsers)
-    {
-        return mNumOfOffenders / numberOfUsers > mOffensiveThreshold;
     }
 }

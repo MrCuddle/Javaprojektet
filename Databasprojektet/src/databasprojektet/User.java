@@ -36,7 +36,7 @@ class User
     }
 
     /**
-     * @return the Id
+     * @return Returns the Id.
      */
     public int GetId()
     {
@@ -44,7 +44,7 @@ class User
     }
 
     /**
-     * @return the Name
+     * @return Returns the Name.
      */
     public String GetName()
     {
@@ -52,7 +52,7 @@ class User
     }
 
     /**
-     * @return the Password
+     * @return the Password.
      */
     public String GetPassword()
     {
@@ -60,7 +60,7 @@ class User
     }
 
     /**
-     * @return the Admin
+     * @return Returns true if the user has admin rights, false otherwise.
      */
     public boolean IsAdmin()
     {

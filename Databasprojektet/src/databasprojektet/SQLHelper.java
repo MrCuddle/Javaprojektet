@@ -35,26 +35,9 @@ public class SQLHelper
     private static final String mConnectionFormat = "jdbc:mysql://" + mHostIp + ":" + mHostPort + "/" + mUserName;
     private static final String mSqlHelperPrefix = "SQLHelper: ";
 
-    /**
-     *
-     * @return
-     */
-    public static String GetHostURL()
-    {
-        try
-        {
-            return mConnection.getMetaData().getURL();
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
 
     /**
-     *
-     * @return
+     * @Returns the IP address of the database host.
      */
     public static String GetHostIP()
     {
@@ -62,8 +45,7 @@ public class SQLHelper
     }
 
     /**
-     *
-     * @return
+     * @return Returns the name of the host of the database
      */
     public static String GetHostName()
     {
@@ -80,7 +62,7 @@ public class SQLHelper
 
     /**
      *
-     * @return
+     * @return Returns the name of the tables in the database
      */
     public static ArrayList<String> GetTableNames()
     {
@@ -102,8 +84,9 @@ public class SQLHelper
     }
 
     /**
-     *
-     * @return
+     * Makes sure that the correct database driver is present in the users system and
+     * and connects to the database
+     * @return Returns the boolean value true if a connection is established and false otherwise.
      */
     public static boolean Connect()
     {
@@ -127,13 +110,12 @@ public class SQLHelper
             System.out.println(mSqlHelperPrefix + "Kunde inte ansluta till databasen " + e);
             return false;
         }
-
         return true;
     }
 
     /**
-     *
-     * @return
+     * Closes the connection to the database.
+     * @return Returns true if the connection is successfully closed, false otherwise
      */
     public static boolean Disconnect()
     {
@@ -150,15 +132,13 @@ public class SQLHelper
             return true;
         }
         return false;
-
     }
 
-    //returnerar huruvida con finns och con.close() INTE blivit kallad
-    //observera att anslutningen fortfarande kan ha avbrutits på annat sätt
-
     /**
-     *
-     * @return
+     * Checks if mConnection exists and if mConnection.close() hasn't been called. 
+     * Observe that the connection could still be broken by other means.
+     * @return Returns the boolean value true if mConnection is not null and mConnection.close() hasn't been called,
+     * false otherwise.
      */
         public static boolean IsConnected()
     {
@@ -174,13 +154,12 @@ public class SQLHelper
             }
         }
         return false;
-
     }
 
     /**
-     *
-     * @param command
-     * @return
+     * Preforms an SQL query and returns the result set.
+     * @param SQL command to be executed.
+     * @return the result set received from the query above.
      */
     public static ResultSet GetResultSetFromQuery(String command)
     {
@@ -201,8 +180,8 @@ public class SQLHelper
     }
 
     /**
-     *
-     * @param command
+     * Updates an existing table. 
+     * @param The SQL query with which to update the table with.
      */
     public static void ExecuteUpdate(String command)
     {
@@ -217,8 +196,8 @@ public class SQLHelper
     }
 
     /**
-     *
-     * @param command
+     * Executes a SQL query without returning the result set.
+     * @param command the SQL query to be executed.
      */
     public static void ExecuteQuery(String command)
     {
@@ -234,7 +213,7 @@ public class SQLHelper
 
     /**
      *
-     * @return
+     * @return Returns a concatenated string consisting of the connection status, the host IP and the host port.
      */
     public static String GetStatus()
     {
@@ -242,9 +221,9 @@ public class SQLHelper
     }
 
     /**
-     *
-     * @param rs
-     * @return
+     * Gets the row count of a specific result set.
+     * @param rs the result set of which rows to count.
+     * @return the number of rows in the result set.
      */
     public static int GetRowCount(ResultSet rs)
     {
@@ -262,60 +241,4 @@ public class SQLHelper
 
         return res;
     }
-
-    /**
-     *
-     * @param rs
-     * @return
-     */
-    public static int GetColumnCount(ResultSet rs)
-    {
-        int res = 0;
-        try
-        {
-            res = rs.getMetaData().getColumnCount();
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return res;
-    }
-
-    /**
-     *
-     * @param rs
-     */
-    public static void PrintResultSet(ResultSet rs)
-    {
-        if (rs != null)
-        {
-
-            try
-            {
-                ResultSetMetaData rsmd = rs.getMetaData();
-                int n = rsmd.getColumnCount();
-                while (rs.next())
-                {
-                    for (int i = 1; i < n; i++)
-                    {
-                        String out = rs.getString(i);
-                        System.out.println(out);
-                    }
-
-                }
-            }
-            catch (SQLException e)
-            {
-                System.out.println(e);
-            }
-        }
-        else
-        {
-            System.out.println(mSqlHelperPrefix + "ResultSet==NULL");
-        }
-
-    }
-
 }

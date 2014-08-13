@@ -411,6 +411,81 @@ public class AdminWindow extends javax.swing.JFrame
     {
         mSQLContentWindow.setText("");
     }
+    
+     /**
+     * Generates a script in the form of a .txt file with which you can reset the database to the 
+     * state at the time of calling.
+     */
+    private void ExportDatabaseToFile()
+    {
+        try
+        {
+            File file = new File("sql.txt");
+            if(!file.exists())
+            {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            String content = new String();
+            try 
+            {
+                ResultSet rs = SQLHelper.GetResultSetFromQuery("show create table category");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("show create table users");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("show create table pun");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("show create table rating");
+                if(rs.next())
+                {
+                    bw.write(rs.getString(2) + ";\n");
+                }
+                
+                rs = SQLHelper.GetResultSetFromQuery("select * from category");
+                while(rs.next())
+                {
+                    bw.write("insert into category VALUES('" + rs.getString("Name") + "'," + rs.getInt("Offensive") + ");\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("select * from users");
+                while(rs.next())
+                {
+                    bw.write("insert into users VALUES(" + rs.getInt("ID") + ",'" + rs.getString("UserName") +
+                            "','" + rs.getString("Password") + "'," + rs.getInt("IsAdmin") + ");\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("select * from pun");
+                while(rs.next())
+                {
+                    bw.write("insert into pun VALUES(" + rs.getInt("ID") + ",'" + rs.getString("Content") + 
+                            "','" + rs.getString("Category") + "'," + rs.getInt("Adder") + ",'" + rs.getDate("Date")
+                            + "'," + rs.getInt("Offensive") + ",'" + rs.getString("Title") + "');\n");
+                }
+                rs = SQLHelper.GetResultSetFromQuery("select * from rating");
+                while(rs.next())
+                {
+                    bw.write("insert into rating VALUES(" + rs.getInt("UserID") + "," + rs.getInt("PunID") + "," + rs.getInt("Rating") + ");\n");
+                }
+            }
+            catch(SQLException e)
+            {
+                System.out.println(e);
+            }
+            bw.close();
+        }
+        catch(IOException e)
+        {
+            System.out.println(e);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -964,76 +1039,6 @@ public class AdminWindow extends javax.swing.JFrame
         ExportDatabaseToFile();
     }//GEN-LAST:event_mOutputDbButtonActionPerformed
 
-    private void ExportDatabaseToFile()
-    {
-        try
-        {
-            File file = new File("sql.txt");
-            if(!file.exists())
-            {
-                file.createNewFile();
-            }
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            String content = new String();
-            try 
-            {
-                ResultSet rs = SQLHelper.GetResultSetFromQuery("show create table category");
-                if(rs.next())
-                {
-                    bw.write(rs.getString(2) + ";\n");
-                }
-                rs = SQLHelper.GetResultSetFromQuery("show create table users");
-                if(rs.next())
-                {
-                    bw.write(rs.getString(2) + ";\n");
-                }
-                rs = SQLHelper.GetResultSetFromQuery("show create table pun");
-                if(rs.next())
-                {
-                    bw.write(rs.getString(2) + ";\n");
-                }
-                rs = SQLHelper.GetResultSetFromQuery("show create table rating");
-                if(rs.next())
-                {
-                    bw.write(rs.getString(2) + ";\n");
-                }
-                
-                rs = SQLHelper.GetResultSetFromQuery("select * from category");
-                while(rs.next())
-                {
-                    bw.write("insert into category VALUES('" + rs.getString("Name") + "'," + rs.getInt("Offensive") + ");\n");
-                }
-                rs = SQLHelper.GetResultSetFromQuery("select * from users");
-                while(rs.next())
-                {
-                    bw.write("insert into users VALUES(" + rs.getInt("ID") + ",'" + rs.getString("UserName") +
-                            "','" + rs.getString("Password") + "'," + rs.getInt("IsAdmin") + ");\n");
-                }
-                rs = SQLHelper.GetResultSetFromQuery("select * from pun");
-                while(rs.next())
-                {
-                    bw.write("insert into pun VALUES(" + rs.getInt("ID") + ",'" + rs.getString("Content") + 
-                            "','" + rs.getString("Category") + "'," + rs.getInt("Adder") + ",'" + rs.getDate("Date")
-                            + "'," + rs.getInt("Offensive") + ",'" + rs.getString("Title") + "');\n");
-                }
-                rs = SQLHelper.GetResultSetFromQuery("select * from rating");
-                while(rs.next())
-                {
-                    bw.write("insert into rating VALUES(" + rs.getInt("UserID") + "," + rs.getInt("PunID") + "," + rs.getInt("Rating") + ");\n");
-                }
-            }
-            catch(SQLException e)
-            {
-                System.out.println(e);
-            }
-            bw.close();
-        }
-        catch(IOException e)
-        {
-            System.out.println(e);
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
