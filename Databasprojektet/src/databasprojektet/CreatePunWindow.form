@@ -136,9 +136,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="mTitleField">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mTitleFieldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="mTitleLabel">
       <Properties>

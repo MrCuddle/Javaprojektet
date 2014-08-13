@@ -23,9 +23,8 @@ package databasprojektet;
 class User
 {
 
-    private int mId;
-    private String mName;
-    private String mPassword;
+    private final int mId;
+    private final String mName, mPassword;
     private boolean mAdmin = false;
 
     public User(int id, String name, String password, boolean admin)
@@ -43,7 +42,7 @@ class User
     {
         return mId;
     }
-    
+
     /**
      * @return the Name
      */
@@ -67,7 +66,7 @@ class User
     {
         return mAdmin;
     }
-    
+
     @Override
     public String toString()
     {

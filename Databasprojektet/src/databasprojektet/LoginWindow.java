@@ -26,7 +26,7 @@ import java.sql.SQLException;
 public class LoginWindow extends javax.swing.JFrame
 {
 
-    MainWindow mRarent;
+    MainWindow mParent;
 
     /**
      * Creates new form LoginWindow
@@ -35,7 +35,7 @@ public class LoginWindow extends javax.swing.JFrame
      */
     public LoginWindow(MainWindow parent)
     {
-        this.mRarent = parent;
+        this.mParent = parent;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -181,27 +181,24 @@ public class LoginWindow extends javax.swing.JFrame
                 String passInDatabase = rs.getString("Password");
                 //Då getPassword returnerar en char[] och inte en String så får man göra som nedan istället för att direkt jämföra.
                 String passInField = new String(mPasswordField.getPassword());
-                System.out.println(passInDatabase);
                 if (passInDatabase.equals(passInField))
                 {
                     int id = rs.getInt("ID");
                     String name = rs.getString("UserName");
                     boolean admin = rs.getBoolean("IsAdmin");
                     User u = new User(id, name, passInDatabase, admin);
-                    mRarent.RegisterUser(u);
+                    mParent.RegisterActiveUser(u);
 
-                    System.out.println("gz! Login success");
                     setVisible(false);
                 }
                 else
                 {
-                    lblLoginResults.setText("Wrong password");
+                    lblLoginResults.setText("Fel lösenord");
                 }
             }
             else
             {
-                lblLoginResults.setText("User name does not exist");
-                System.out.println("Gick ej att logga in");
+                lblLoginResults.setText("Användarnamnet existerar inte");
             }
 
         }

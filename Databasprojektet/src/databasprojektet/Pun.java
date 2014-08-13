@@ -26,38 +26,16 @@ import java.util.logging.Logger;
  *
  * @author Simpa
  */
-public class Pun {
-    
-    private String mContent, mAdder, mTitle, mCategory;
-    private int mNumOfOffenders, mId, mAdderId;
-    private float mRating;
+public class Pun
+{
+
+    private final String mContent, mTitle, mCategory;
+    private final int mId, mAdderId;
     private final float mOffensiveThreshold = 0.2f;
-    private Date mDateAdded;
-    
-    //För ny pun
-    public Pun(String content, String adder, Date dateAdded)
-    {
-        mContent = content;
-        mAdder = adder;
-        mDateAdded = dateAdded;
-    }
-    
-    public Pun(String content, String title, String category, int id)
-    {
-        mContent = content;
-        mTitle = title;
-        mCategory = category;
-        mId = id;
-    }
-    
-    public Pun(String content, String adder, Date dateAdded, int numOfOffenders)
-    {
-        mContent = content;
-        mAdder = adder;
-        mDateAdded = dateAdded;
-        mNumOfOffenders = numOfOffenders;
-    }
-    
+    private final Date mDateAdded;
+    private int mNumOfOffenders = 0;
+    private float mRating;
+
     public Pun(int id, String title, String content, String category, int adder, Date dateAdded)
     {
         mId = id;
@@ -67,12 +45,12 @@ public class Pun {
         mAdderId = adder;
         mDateAdded = dateAdded;
     }
-    
+
     public String GetContent()
     {
         return mContent;
     }
-    
+
     public String GetAdder()
     {
         String res = null;
@@ -80,7 +58,7 @@ public class Pun {
         ResultSet rs = SQLHelper.GetResultSetFromQuery(query);
         try
         {
-            if(rs.next())
+            if (rs.next())
             {
                 res = rs.getString("UserName");
             }
@@ -89,51 +67,53 @@ public class Pun {
         {
             Logger.getLogger(AdminWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return res;
     }
+
     public int GetAdderId()
     {
         return mAdderId;
     }
-    
+
     public Date GetDate()
     {
         return mDateAdded;
     }
-    
+
     public String GetTitle()
     {
         return mTitle;
     }
-    
+
     public String GetCategory()
     {
         return mCategory;
     }
-    
+
     public int GetID()
     {
         return mId;
     }
-    
+
     public float GetRating()
     {
         return mRating;
     }
-    
+
     public void SetRating(float rating)
     {
         mRating = rating;
     }
+
     //Bör skickas till databasen också/istället
     public void ThisIsOffensive()
     {
         mNumOfOffenders++;
     }
-    
+
     /*Om denna bool är true så borde browsern endast visa
-    den om man har markerat att man är man nog för't!*/
+     den om man har markerat att man är man nog för't!*/
     public boolean IsItOffensive(int numberOfUsers)
     {
         return mNumOfOffenders / numberOfUsers > mOffensiveThreshold;

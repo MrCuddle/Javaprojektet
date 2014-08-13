@@ -35,6 +35,8 @@ public class CreatePunWindow extends javax.swing.JFrame
 
     /**
      * Creates new form NewPunWindow
+     *
+     * @param grandParent
      */
     public CreatePunWindow(MainWindow grandParent, AdminWindow parent)
     {
@@ -120,14 +122,6 @@ public class CreatePunWindow extends javax.swing.JFrame
             }
         });
 
-        mTitleField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                mTitleFieldActionPerformed(evt);
-            }
-        });
-
         mTitleLabel.setText("Titel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,38 +180,38 @@ public class CreatePunWindow extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_mCancelButtonActionPerformed
 
-    
+
     private void mOkButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mOkButtonActionPerformed
     {//GEN-HEADEREND:event_mOkButtonActionPerformed
         String title = mTitleField.getText();
         String content = mPunContentWindow.getText();
-        if(title != null && !title.isEmpty() && content != null && !content.isEmpty())
+        if (title != null && !title.isEmpty() && content != null && !content.isEmpty())
         {
-        int punId = GetValidID();
-        String category = (String) mCategoryComboBox.getSelectedItem();
-        int adder = mGrandParent.GetActiveUser().GetId();
-        Date date = Application.GetCurrentDate();
-        
-        String newPunQuery = "INSERT INTO pun VALUES (" + punId + 
-                ", '" + content +
-                "', '" + category +
-                "', " + adder +
-                ", '" + date +
-                "', " + 0 +
-                ", '" + title +
-                "');";
-        SQLHelper.ExecuteUpdate(newPunQuery);
-        try
-        {
-            Thread.sleep(1000);
-        }
-        catch(InterruptedException e)
-        {
-            System.out.println(e);
-        }
-        mGrandParent.UpdatePuns();
-        mParent.UpdatePuns();
-        dispose();
+            int punId = GetValidID();
+            String category = (String) mCategoryComboBox.getSelectedItem();
+            int adder = mGrandParent.GetActiveUser().GetId();
+            Date date = Application.GetCurrentDate();
+
+            String newPunQuery = "INSERT INTO pun VALUES (" + punId
+                    + ", '" + content
+                    + "', '" + category
+                    + "', " + adder
+                    + ", '" + date
+                    + "', " + 0
+                    + ", '" + title
+                    + "');";
+            SQLHelper.ExecuteUpdate(newPunQuery);
+            try
+            {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e)
+            {
+                System.out.println(e);
+            }
+            
+            mParent.UpdatePuns();
+            dispose();
         }
     }
 
@@ -228,13 +222,13 @@ public class CreatePunWindow extends javax.swing.JFrame
     {
         int newId = 0;
         ResultSet rs = SQLHelper.GetResultSetFromQuery("SELECT * FROM pun;");
-        int arraySize = SQLHelper.GetRowCount(rs);   
+        int arraySize = SQLHelper.GetRowCount(rs);
         int[] existingIds = new int[arraySize];
-               
+
         try
         {
             int counter = 0;
-            while(rs.next())            
+            while (rs.next())
             {
                 existingIds[counter] = rs.getInt(1);
                 counter++;
@@ -244,9 +238,9 @@ public class CreatePunWindow extends javax.swing.JFrame
         {
             Logger.getLogger(CreatePunWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         Arrays.sort(existingIds);
-        
+
         for (int i = 0; i < arraySize + 1; i++)
         {
             int searchRes = Arrays.binarySearch(existingIds, newId);
@@ -257,7 +251,7 @@ public class CreatePunWindow extends javax.swing.JFrame
 
             newId++;
         }
-        
+
         return newId;
     }//GEN-LAST:event_mOkButtonActionPerformed
 
@@ -266,59 +260,6 @@ public class CreatePunWindow extends javax.swing.JFrame
         mParent.AddCategory("Välj en titel");
     }//GEN-LAST:event_mNewCategoryButtonActionPerformed
 
-    private void mTitleFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mTitleFieldActionPerformed
-    {//GEN-HEADEREND:event_mTitleFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mTitleFieldActionPerformed
-
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[])
-//    {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try
-//        {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-//            {
-//                if ("Nimbus".equals(info.getName()))
-//                {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        }
-//        catch (ClassNotFoundException ex)
-//        {
-//            java.util.logging.Logger.getLogger(CreatePunWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (InstantiationException ex)
-//        {
-//            java.util.logging.Logger.getLogger(CreatePunWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (IllegalAccessException ex)
-//        {
-//            java.util.logging.Logger.getLogger(CreatePunWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        catch (javax.swing.UnsupportedLookAndFeelException ex)
-//        {
-//            java.util.logging.Logger.getLogger(CreatePunWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable()
-//        {
-//            public void run()
-//            {
-//                new CreatePunWindow().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

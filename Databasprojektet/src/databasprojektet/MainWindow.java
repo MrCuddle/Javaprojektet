@@ -30,10 +30,11 @@ import javax.swing.DefaultListModel;
 public class MainWindow extends javax.swing.JFrame
 {
 
+    private AdminWindow mAdminWindow = null;
     private String mUserName = "Gäst";
     private final String mWelcomeMsg = "Välkommen ";
-    ArrayList<Pun> mPunList = new ArrayList<Pun>();
-    ArrayList<Pun> mPunListShown = new ArrayList<Pun>();
+    private ArrayList<Pun> mPunList = new ArrayList<>();
+    private ArrayList<Pun> mPunListShown = new ArrayList<>();
     private User mActiveUser = null;
 
     /**
@@ -49,6 +50,7 @@ public class MainWindow extends javax.swing.JFrame
         this.setLocationRelativeTo(null);
         ActionListener categoryCbActionListener = new ActionListener()
         {
+            @Override
             public void actionPerformed(ActionEvent e)
             {
                 String s = (String) mCategoryComboBox.getSelectedItem();
@@ -89,7 +91,8 @@ public class MainWindow extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         mExitButton = new javax.swing.JButton();
         mCategoryComboBox = new javax.swing.JComboBox();
@@ -114,14 +117,18 @@ public class MainWindow extends javax.swing.JFrame
 
         mExitButton.setText("Avsluta");
         mExitButton.setName("btnExit"); // NOI18N
-        mExitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mExitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mExitButtonActionPerformed(evt);
             }
         });
 
-        mCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mCategoryComboBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mCategoryComboBoxActionPerformed(evt);
             }
         });
@@ -136,13 +143,16 @@ public class MainWindow extends javax.swing.JFrame
 
         mMessageLabel.setText("lblMsg");
 
-        mPunListWindow.setModel(new javax.swing.AbstractListModel() {
+        mPunListWindow.setModel(new javax.swing.AbstractListModel()
+        {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        mPunListWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        mPunListWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 mPunListWindowValueChanged(evt);
             }
         });
@@ -153,16 +163,20 @@ public class MainWindow extends javax.swing.JFrame
         mRateItButton.setText("Rate It");
         mRateItButton.setToolTipText("Logga in för att betygsätta detta skämt!");
         mRateItButton.setEnabled(false);
-        mRateItButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mRateItButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mRateItButtonActionPerformed(evt);
             }
         });
 
         mProfileButton.setText("Login/Skapa profil");
         mProfileButton.setName("btnLogin"); // NOI18N
-        mProfileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mProfileButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mProfileButtonActionPerformed(evt);
             }
         });
@@ -199,9 +213,9 @@ public class MainWindow extends javax.swing.JFrame
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(mRating)))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(mProfileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(mProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(mRateItButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(mRateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,20 +261,19 @@ public class MainWindow extends javax.swing.JFrame
         try
         {
             while (punsFromDb.next())
-            {              
-                 mPunList.add(new Pun(punsFromDb.getInt("ID"), punsFromDb.getString("Title"), punsFromDb.getString("Content"),
+            {
+                mPunList.add(new Pun(punsFromDb.getInt("ID"), punsFromDb.getString("Title"), punsFromDb.getString("Content"),
                         punsFromDb.getString("Category"), punsFromDb.getInt("Adder"), punsFromDb.getDate("Date")));
             }
-            
-            System.out.println("Rating beräknings debug output : ");
-            for(Pun p : mPunList)
+
+            for (Pun p : mPunList)
             {
                 ResultSet ratingFromDb = SQLHelper.GetResultSetFromQuery("SELECT * from rating where punID = " + p.GetID());
                 float rating = 0.f;
                 int numOfRatings = 0;
                 try
                 {
-                    while(ratingFromDb.next())
+                    while (ratingFromDb.next())
                     {
                         rating += ratingFromDb.getInt("Rating");
                         numOfRatings++;
@@ -270,12 +283,9 @@ public class MainWindow extends javax.swing.JFrame
                 {
                     System.out.println(e);
                 }
-                if(numOfRatings > 0)
+                if (numOfRatings > 0)
                 {
-                    System.out.println(" N O R : " + numOfRatings);
-                    System.out.println(rating);
                     rating /= numOfRatings;
-                    System.out.println(rating);
                 }
                 p.SetRating(rating);
             }
@@ -340,14 +350,21 @@ public class MainWindow extends javax.swing.JFrame
         mPunListWindow.setModel(listModel);
     }
     private void mExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExitButtonActionPerformed
-
+        System.out.println("Stopped");
         System.exit(0);
     }//GEN-LAST:event_mExitButtonActionPerformed
 
     private void mProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mProfileButtonActionPerformed
 
-        LoginWindow login = new LoginWindow(this);
-        login.setVisible(true);
+        if (mActiveUser != null)
+        {
+            UnregisterActiveUser();
+        }
+        else
+        {
+            LoginWindow login = new LoginWindow(this);
+            login.setVisible(true);
+        }
 
     }//GEN-LAST:event_mProfileButtonActionPerformed
 
@@ -396,7 +413,7 @@ public class MainWindow extends javax.swing.JFrame
         mMessageLabel.setText(mWelcomeMsg + mUserName + "!");
     }
 
-    public void RegisterUser(User user)
+    public void RegisterActiveUser(User user)
     {
         mActiveUser = user;
         UpdateUsername(mActiveUser.GetName());
@@ -405,9 +422,27 @@ public class MainWindow extends javax.swing.JFrame
         mRateItButton.setToolTipText("");
         if (mActiveUser.IsAdmin())
         {
-            System.out.println("Välkommen admin");
-            AdminWindow a = new AdminWindow(this);
-            a.setVisible(true);
+            mAdminWindow = new AdminWindow(this);
+            mAdminWindow.setVisible(true);
+
+        }
+
+        mProfileButton.setText("Logga ut");
+    }
+
+    public void UnregisterActiveUser()
+    {
+        mActiveUser = null;
+        UpdateUsername("Gäst");
+        mMessageLabel.setText(mWelcomeMsg + mUserName + "!");
+        mProfileButton.setText("Login/Skapa profil");
+        mRateItButton.setEnabled(false);
+        mRateSlider.setEnabled(false);
+        if (mAdminWindow != null)
+        {
+            mAdminWindow.dispose();
+            mAdminWindow = null;
+
         }
     }
 

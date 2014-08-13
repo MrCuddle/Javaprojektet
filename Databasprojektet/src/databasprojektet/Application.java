@@ -14,14 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package databasprojektet;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -29,36 +26,38 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Simon Dahlberg and Jesper Sahlin
  */
-public class Application{
+public class Application
+{
+
     private final String mLookAndFeelPath = "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel";
     private MainWindow mMainWindow;
-    
-    
+
     public Application()
     {
         Initialize();
-        
+
     }
 
-    private void Initialize() {
+    private void Initialize()
+    {
         try
         {
             UIManager.setLookAndFeel(mLookAndFeelPath);
         }
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e)
         {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
-    
+
     public void Run()
     {
         System.out.println("Started");
         SQLHelper.Connect();
         mMainWindow = new MainWindow();
-        
+
         mMainWindow.setVisible(true);
-        
+
     }
 
     private void ConnectToDatabase()
@@ -70,24 +69,24 @@ public class Application{
             {
                 SQLHelper.Connect();
                 System.out.println(SQLHelper.GetStatus());
-                try {
-                   ResultSet rs = SQLHelper.GetResultSetFromQuery("Select Content from pun");
-                   while(rs.next())
-                   {
-                        String outputPun = rs.getString("Content");
+                try
+                {
+                    ResultSet rs = SQLHelper.GetResultSetFromQuery("Select Content from pun");
+                    while (rs.next())
+                    {
                         System.out.println(SQLHelper.GetStatus());
-                   } 
+                    }
                 }
-                   catch (SQLException e) {
-                   System.out.println(e);
+                catch (SQLException e)
+                {
+                    System.out.println(e);
                 }
             }
         }.start();
     }
-    
+
     public static Date GetCurrentDate()
     {
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         return new Date(System.currentTimeMillis());
     }
 }

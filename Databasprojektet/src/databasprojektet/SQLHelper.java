@@ -211,7 +211,7 @@ public class SQLHelper
 
         return res;
     }
-    
+
     public static int GetColumnCount(ResultSet rs)
     {
         int res = 0;
@@ -223,7 +223,7 @@ public class SQLHelper
         {
             Logger.getLogger(SQLHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return res;
     }
 

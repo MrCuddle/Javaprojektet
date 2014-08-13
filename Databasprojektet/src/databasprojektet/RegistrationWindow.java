@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package databasprojektet;
 
 import java.sql.ResultSet;
@@ -25,15 +24,18 @@ import java.util.Arrays;
  *
  * @author Simpa
  */
-public class RegistrationWindow extends javax.swing.JFrame {
+public class RegistrationWindow extends javax.swing.JFrame
+{
 
     /**
      * Creates new form Register
+     *
      * @param isAdmin
      */
-    public RegistrationWindow(boolean isAdmin) {
+    public RegistrationWindow(boolean isAdmin)
+    {
         initComponents();
-        if(!isAdmin)
+        if (!isAdmin)
         {
             mAdminCheckbox.setVisible(false);
         }
@@ -146,37 +148,39 @@ public class RegistrationWindow extends javax.swing.JFrame {
     private void mOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOkButtonActionPerformed
         boolean isDuplicate = false;
         jLabel1.setText("");
-        if(Arrays.equals(mPasswordField.getPassword(), mConfirmPasswordField.getPassword()))
+        if (Arrays.equals(mPasswordField.getPassword(), mConfirmPasswordField.getPassword()))
         {
-        try 
-        {
-            ResultSet rs = SQLHelper.GetResultSetFromQuery("Select UserName from users");
-            System.out.println(mNameField.getText());
-            while(rs.next())
+            try
             {
-                System.out.println(rs.getString("UserName"));
-                if(mNameField.getText().toUpperCase().equals(rs.getString("UserName").toUpperCase()))
-                    isDuplicate = true;
+                ResultSet rs = SQLHelper.GetResultSetFromQuery("Select UserName from users");
+                System.out.println(mNameField.getText());
+                while (rs.next())
+                {
+                    System.out.println(rs.getString("UserName"));
+                    if (mNameField.getText().toUpperCase().equals(rs.getString("UserName").toUpperCase()))
+                    {
+                        isDuplicate = true;
+                    }
+                }
+                if (!isDuplicate)
+                {
+                    int isAdmin = mAdminCheckbox.isSelected() ? 1 : 0;
+                    String password = new String(mPasswordField.getPassword());
+                    SQLHelper.ExecuteUpdate("INSERT INTO users(UserName, Password, IsAdmin) VALUES ('" + mNameField.getText() + "', '" + password + "', '" + isAdmin + "');");
+                    setVisible(false);
+                    jLabel1.setText("Account created succesfully");
+                }
+                else
+                {
+                    //Ifrågasätt användarens sexuella läggning. (användarnamnet finns redan hehu).
+                    System.out.println("Hörrö, användarnamnet äro upptaget");
+                    jLabel1.setText("User name already exists");
+                }
             }
-            if(!isDuplicate)
+            catch (SQLException e)
             {
-                int isAdmin = mAdminCheckbox.isSelected() ? 1 : 0;
-                String password = new String(mPasswordField.getPassword());
-                SQLHelper.ExecuteUpdate("INSERT INTO users(UserName, Password, IsAdmin) VALUES ('" + mNameField.getText() + "', '" + password +  "', '" + isAdmin + "');");
-                setVisible(false);
-                jLabel1.setText("Account created succesfully");
+                System.out.println(e);
             }
-            else
-            {
-                //Ifrågasätt användarens sexuella läggning. (användarnamnet finns redan hehu).
-                System.out.println("Hörrö, användarnamnet äro upptaget");
-                jLabel1.setText("User name already exists");
-            }
-        }
-        catch (SQLException e) 
-        {
-            System.out.println(e);
-        }
         }
         else
         {
@@ -188,28 +192,36 @@ public class RegistrationWindow extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        }
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(RegistrationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
             @Override
-            public void run() {
+            public void run()
+            {
                 new RegistrationWindow(false).setVisible(true);
             }
         });
