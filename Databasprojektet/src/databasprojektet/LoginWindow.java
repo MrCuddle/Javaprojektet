@@ -81,7 +81,6 @@ public class LoginWindow extends javax.swing.JFrame
             }
         });
 
-        mNameField.setText("bob");
         mNameField.setName("mNameField"); // NOI18N
 
         mCancelButton.setText("Avbryt");
@@ -110,8 +109,14 @@ public class LoginWindow extends javax.swing.JFrame
             }
         });
 
-        mPasswordField.setText("123");
         mPasswordField.setName("mPasswordField"); // NOI18N
+        mPasswordField.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mPasswordFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,6 +223,11 @@ public class LoginWindow extends javax.swing.JFrame
     private void mCancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mCancelButtonActionPerformed
         setVisible(false);
     }//GEN-LAST:event_mCancelButtonActionPerformed
+
+    private void mPasswordFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mPasswordFieldActionPerformed
+    {//GEN-HEADEREND:event_mPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mPasswordFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbLoginResult;

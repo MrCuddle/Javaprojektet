@@ -503,7 +503,8 @@ public class AdminWindow extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -555,12 +556,21 @@ public class AdminWindow extends javax.swing.JFrame
         setResizable(false);
 
         mNewUserButton.setText("Lägg Till Användare");
-        mNewUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mNewUserButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mNewUserButtonActionPerformed(evt);
             }
         });
 
+        mUserWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                mUserWindowValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(mUserWindow);
 
         mUserInfoContent.setEditable(false);
@@ -569,8 +579,10 @@ public class AdminWindow extends javax.swing.JFrame
         jScrollPane2.setViewportView(mUserInfoContent);
 
         mRemoveUserButton.setText("Ta bort användare");
-        mRemoveUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mRemoveUserButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mRemoveUserButtonActionPerformed(evt);
             }
         });
@@ -596,8 +608,8 @@ public class AdminWindow extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(pnlUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mNewUserButton)
@@ -607,21 +619,26 @@ public class AdminWindow extends javax.swing.JFrame
         jTabbedPane.addTab("Användare", pnlUser);
 
         mNewPunButton.setText("Lägg Till Skämt");
-        mNewPunButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mNewPunButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mNewPunButtonActionPerformed(evt);
             }
         });
 
         jLabelCategory.setText("Kategori");
 
-        mPunListWindow.setModel(new javax.swing.AbstractListModel() {
+        mPunListWindow.setModel(new javax.swing.AbstractListModel()
+        {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        mPunListWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        mPunListWindow.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 mPunListWindowValueChanged(evt);
             }
         });
@@ -630,8 +647,10 @@ public class AdminWindow extends javax.swing.JFrame
         mPunContentWindow.setColumns(20);
         mPunContentWindow.setLineWrap(true);
         mPunContentWindow.setRows(5);
-        mPunContentWindow.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        mPunContentWindow.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 mPunContentWindowKeyTyped(evt);
             }
         });
@@ -645,8 +664,10 @@ public class AdminWindow extends javax.swing.JFrame
 
         mTitleLabel.setText("Titel");
 
-        mTitleField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+        mTitleField.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
                 mTitleFieldKeyTyped(evt);
             }
         });
@@ -659,15 +680,19 @@ public class AdminWindow extends javax.swing.JFrame
         mDateField.setFocusable(false);
 
         mDeletePunButton.setText("Ta Bort Skämt");
-        mDeletePunButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mDeletePunButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mDeletePunButtonActionPerformed(evt);
             }
         });
 
         mNewCategoryButton.setText("Ny Kategori");
-        mNewCategoryButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mNewCategoryButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mNewCategoryButtonActionPerformed(evt);
             }
         });
@@ -676,8 +701,10 @@ public class AdminWindow extends javax.swing.JFrame
 
         mUpdatePunButton.setText("Uppdatera");
         mUpdatePunButton.setEnabled(false);
-        mUpdatePunButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mUpdatePunButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mUpdatePunButtonActionPerformed(evt);
             }
         });
@@ -777,8 +804,10 @@ public class AdminWindow extends javax.swing.JFrame
         jScrollPane5.setViewportView(mSQLContentWindow);
 
         mSQLQueryButton.setText("Test SQL Command");
-        mSQLQueryButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mSQLQueryButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mSQLQueryButtonActionPerformed(evt);
             }
         });
@@ -794,8 +823,10 @@ public class AdminWindow extends javax.swing.JFrame
         mDatabaseField.setEditable(false);
 
         mOutputDbButton.setText("Skriv databas till fil");
-        mOutputDbButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mOutputDbButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 mOutputDbButtonActionPerformed(evt);
             }
         });
@@ -1047,6 +1078,14 @@ public class AdminWindow extends javax.swing.JFrame
     private void mOutputDbButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOutputDbButtonActionPerformed
         ExportDatabaseToFile();
     }//GEN-LAST:event_mOutputDbButtonActionPerformed
+
+    private void mUserWindowValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_mUserWindowValueChanged
+    {//GEN-HEADEREND:event_mUserWindowValueChanged
+        
+        User selectedUser = mUserList.get(mUserWindow.getSelectedIndex());
+        mUserInfoContent.setText("Namn: " + selectedUser.GetName() + "\nId:" + selectedUser.GetId() + "\nAdmin: " + (selectedUser.IsAdmin() ? "Ja" : "Nej"));
+        
+    }//GEN-LAST:event_mUserWindowValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
